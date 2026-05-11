@@ -1,0 +1,10 @@
+# Reference material (not part of the prototype)
+*.png
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.PNG
+
+# macOS
+.DS_Store
