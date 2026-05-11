@@ -744,6 +744,184 @@
   body[data-pay-mode="installment"] .pm-section,
   body[data-pay-mode="installment"] .secure-row { display: none; }
 
+  /* Booking-paid mode: hide sub-only sections inside Manage modal */
+  body[data-profile-mode="booking"] .ms-sessions-card,
+  body[data-profile-mode="booking"] .ms-addons-card { display: none; }
+
+  /* Booking-paid mode: amber/yellow theme on banner + gist card */
+  body[data-profile-mode="booking"] .pay-confirm-banner {
+    background: linear-gradient(135deg, #f5a524, #d97706);
+    box-shadow: 0 3px 10px rgba(217,119,6,0.32);
+  }
+  body[data-profile-mode="booking"] .pay-confirm-banner:hover {
+    box-shadow: 0 5px 14px rgba(217,119,6,0.42);
+  }
+  body[data-profile-mode="booking"] .subscription-card {
+    background: linear-gradient(160deg, #fff3d6 0%, #fde2a4 100%);
+    border-color: #d97706;
+    box-shadow: 0 3px 12px rgba(217,119,6,0.20);
+  }
+  body[data-profile-mode="booking"] .subscription-card::before {
+    background: rgba(217,119,6,0.10);
+  }
+  body[data-profile-mode="booking"] .sub-card-badge {
+    background: linear-gradient(135deg, #f5a524, #d97706);
+    box-shadow: 0 1.5px 5px rgba(217,119,6,0.32);
+  }
+  body[data-profile-mode="booking"] .sub-card-title { color: #78350f; }
+  body[data-profile-mode="booking"] .sub-meta-label { color: #92400e; }
+  body[data-profile-mode="booking"] .sub-meta-value { color: #1a1006; }
+  body[data-profile-mode="booking"] .sub-meta { background: rgba(255,255,255,0.75); }
+  body[data-profile-mode="booking"] .sub-days-left {
+    color: #78350f;
+    border-color: #fcd9a4;
+    background: rgba(255,255,255,0.85);
+  }
+
+  /* Step G — "Booking Paid" (₹1,000 paid, plan not yet chosen) */
+  .booking-paid-hero { display: none; }
+  .screen[data-sit="G"] .booking-paid-hero {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(47,138,114,0.28);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .booking-paid-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.18) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .bph-tick {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    border: 1.5px solid rgba(255,255,255,0.55);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .bph-tick svg {
+    width: 16px; height: 16px;
+    stroke: #fff;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .bph-body { flex: 1; min-width: 0; line-height: 1.3; }
+  .bph-title {
+    font-size: 14.5px;
+    font-weight: 800;
+    letter-spacing: -0.1px;
+  }
+  .bph-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.92);
+    margin-top: 3px;
+    font-weight: 600;
+  }
+  .bph-sub strong { color: #fff; font-weight: 800; }
+
+  /* Booking-paid timing card */
+  .bph-info-card {
+    background: #fff;
+    border: 1.5px dashed #cfe6dc;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .screen[data-sit="G"] .bph-info-card { display: block; }
+  .bph-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    font-size: 12px;
+    color: #2c3a3a;
+  }
+  .bph-info-row + .bph-info-row { border-top: 1px dashed #eef2f1; }
+  .bph-info-row strong { font-weight: 800; color: #0a1818; }
+  .bph-info-row .pill-paid {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .bph-info-row .pill-discount {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  /* Hide non-booking content in sit=G */
+  .screen[data-sit="G"] .post-session-details,
+  .screen[data-sit="G"] .report-card,
+  .screen[data-sit="G"] .user-book-block,
+  .screen[data-sit="G"] .pending-booking,
+  .screen[data-sit="G"] .confirmed-banner { display: none !important; }
+  /* Restyle plans header in G */
+  .screen[data-sit="G"] .plans-book-btn,
+  .screen[data-sit="G"] .book-discount-note { display: none !important; }
+
+  /* Step F — "Subscribe Later" (user self-serve, no discount) */
+  .screen[data-sit="F"] .plans-section { display: block; }
+  /* Hide every discount visual */
+  .screen[data-sit="F"] .plan-bump,
+  .screen[data-sit="F"] .plan-addons-chip,
+  .screen[data-sit="F"] .book-discount-note,
+  .screen[data-sit="F"] .plans-book-btn,
+  .screen[data-sit="F"] .addon-strike { display: none !important; }
+  /* Normal-coloured prices (not green-discounted) */
+  .screen[data-sit="F"] .addon-now.discounted { color: #0a1818 !important; }
+  /* Make add-on bullets directly clickable by the user */
+  .screen[data-sit="F"] .addon-bullet {
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.12s;
+  }
+  .screen[data-sit="F"] .addon-bullet:hover { background: #f1f4f3; }
+  /* Self-serve mode label on the plans header */
+  .self-serve-label { display: none; }
+  .screen[data-sit="F"] .self-serve-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding: 9px 11px;
+    background: #fff8e6;
+    border: 1px solid #f7e3a3;
+    border-radius: 8px;
+    font-size: 11.5px;
+    color: #6d531a;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .self-serve-label .ss-ico {
+    width: 14px; height: 14px;
+    color: #b07c0a;
+    flex-shrink: 0;
+  }
+
   /* User-initiated booking option (sit D, when no booking activity yet) */
   .user-book-block { display: none; }
   body:not([data-booking-state]) .screen[data-sit="D"] .scroll-area[data-page="detail"] .user-book-block {
@@ -829,10 +1007,1014 @@
   }
 
   /* ============ PAGE NAVIGATION (home / detail / payment) ============ */
-  .page-home, .page-detail, .page-payment { display: none; }
+  .page-home, .page-detail, .page-payment, .page-profile { display: none; }
   .scroll-area[data-page="home"]    .page-home    { display: block; }
   .scroll-area[data-page="detail"]  .page-detail  { display: block; }
   .scroll-area[data-page="payment"] .page-payment { display: block; }
+  .scroll-area[data-page="profile"] .page-profile { display: block; }
+
+  /* ===== Profile page (post-payment) ===== */
+  .page-profile { background: #fff; padding: 0 14px 20px; }
+  .profile-header {
+    padding: 12px 0 14px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: -0.3px;
+  }
+  .profile-hero {
+    background: linear-gradient(140deg, #2f8a72 0%, #1f6b58 100%);
+    border-radius: 18px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 6px 18px rgba(47,138,114,0.28);
+  }
+  .ph-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8d5b0 0%, #b08968 60%, #6d4c2a 100%);
+    border: 3px solid #fff;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+  }
+  .ph-avatar::after {
+    content: "✎";
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: #2f8a72;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  .ph-info { flex: 1; min-width: 0; color: #fff; }
+  .ph-name {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  .ph-phone {
+    font-size: 13px;
+    color: rgba(255,255,255,0.88);
+    margin-top: 4px;
+    letter-spacing: 0.2px;
+  }
+
+  /* Subscription details card (the new component) */
+  .subscription-card {
+    margin-top: 14px;
+    background: linear-gradient(160deg, #ecf7f2 0%, #d6efe5 100%);
+    border: 1.5px solid #2f8a72;
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+    box-shadow: 0 3px 12px rgba(47,138,114,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .subscription-card::before {
+    content: "";
+    position: absolute;
+    top: -28px; right: -28px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(47,138,114,0.10);
+  }
+  .sub-card-row1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    justify-content: space-between;
+  }
+  .sub-days-left {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #1f5b4f;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #cfe6dc;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+  .sub-card-badge {
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 1.5px 5px rgba(47,138,114,0.32);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .sub-card-badge .pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    animation: badgepulse 1.4s ease-in-out infinite;
+  }
+  @keyframes badgepulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+  .sub-card-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1f5b4f;
+    letter-spacing: -0.3px;
+  }
+  .sub-card-tagline {
+    font-size: 11.5px;
+    color: #2f8a72;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .sub-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .sub-meta {
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .sub-meta-label {
+    font-size: 9.5px;
+    color: #4a7064;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .sub-meta-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0a1818;
+    margin-top: 2px;
+    line-height: 1.2;
+  }
+  .sub-addons-row {
+    margin-top: 8px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .sub-addons-row .sub-meta-label { margin-bottom: 3px; }
+  .sub-addons-row .sub-meta-value {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1f5b4f;
+    line-height: 1.45;
+  }
+  .sub-progress {
+    margin-top: 10px;
+  }
+  .sub-progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #1f5b4f;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+  }
+  .sub-progress-bar {
+    height: 7px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .sub-progress-fill {
+    height: 100%;
+    width: 3%;
+    background: linear-gradient(90deg, #2f8a72, #16a085);
+    border-radius: 4px;
+    box-shadow: inset 0 0 4px rgba(255,255,255,0.4);
+  }
+  .sub-card-cta {
+    margin-top: 12px;
+    padding: 10px;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 3px 10px rgba(47,138,114,0.32);
+    transition: transform 0.15s, box-shadow 0.18s;
+  }
+  .sub-card-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(47,138,114,0.4);
+  }
+  .sub-renews-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1f5b4f;
+  }
+  .sub-renews-line .calendar-ico {
+    width: 12px; height: 12px;
+    opacity: 0.8;
+  }
+
+  /* "Subscription active" tap-banner */
+  .pay-confirm-banner {
+    margin-top: 14px;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    box-shadow: 0 3px 10px rgba(47,138,114,0.28);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.18s;
+  }
+  .pay-confirm-banner:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(47,138,114,0.36);
+  }
+  .pay-confirm-banner:active { transform: translateY(0); }
+  .pay-confirm-banner .pcb-chev {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.92;
+    flex-shrink: 0;
+  }
+  .pay-confirm-banner:hover .pcb-chev { transform: translateX(2px); }
+  .pay-confirm-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.18) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .pcb-tick {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.55);
+  }
+  .pcb-tick svg {
+    width: 14px; height: 14px;
+    stroke: #fff;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .pcb-body { flex: 1; min-width: 0; color: #fff; line-height: 1.3; }
+  .pcb-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1px;
+  }
+  .pcb-sub {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.92);
+    margin-top: 2px;
+    font-weight: 600;
+  }
+
+  /* ===== Manage Subscription modal (bottom sheet) ===== */
+  .manage-modal {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 110;
+    border-radius: 34px;
+    overflow: hidden;
+  }
+  .manage-modal.open { pointer-events: auto; }
+  .manage-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .manage-modal.open .manage-modal-backdrop { opacity: 1; }
+  .manage-modal-sheet {
+    position: absolute;
+    inset: 0;
+    background: #f3f6f5;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.32s cubic-bezier(0.32,0.72,0,1);
+  }
+  .manage-modal.open .manage-modal-sheet { transform: translateY(0); }
+  .manage-modal-header {
+    background: #fff;
+    padding: 14px 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #e8edec;
+    flex-shrink: 0;
+  }
+  .manage-modal-back {
+    background: transparent;
+    border: 0;
+    font-size: 22px;
+    color: #2f8a72;
+    cursor: pointer;
+    padding: 0 4px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .manage-modal-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 800;
+    color: #0a1818;
+  }
+  .manage-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ms-status {
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    border-radius: 14px;
+    padding: 14px;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(47,138,114,0.28);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .ms-status::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.18) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .ms-status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .ms-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.22);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .ms-status-badge .pulse {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    animation: badgepulse 1.4s ease-in-out infinite;
+  }
+  .ms-status-plan {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .ms-status-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.92);
+    font-weight: 600;
+  }
+  .ms-status-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .ms-status-date {
+    background: rgba(255,255,255,0.16);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  .ms-status-date-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .ms-status-date-value {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .ms-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(10,24,24,0.04);
+  }
+  .ms-section-title {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #2f8a72;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ms-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 12.5px;
+    color: #2c3a3a;
+  }
+  .ms-row + .ms-row { border-top: 1px dashed #eef2f1; }
+  .ms-row strong { font-weight: 800; color: #0a1818; }
+  .ms-row .discount-pill {
+    display: inline-block;
+    margin-left: 6px;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    vertical-align: 1px;
+  }
+  .ms-strike {
+    color: #b6c0bf;
+    text-decoration: line-through;
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  .ms-total-row {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, #ecf7f2, #d6efe5);
+    border: 1.5px solid #2f8a72;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .ms-total-row .ms-total-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1f5b4f;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .ms-total-row .ms-total-value {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1f5b4f;
+    letter-spacing: -0.3px;
+  }
+  .ms-progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1f5b4f;
+    margin-bottom: 6px;
+  }
+  .ms-progress-bar {
+    height: 8px;
+    background: #ecf7f2;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .ms-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2f8a72, #16a085);
+    border-radius: 4px;
+  }
+  .ms-pay-method {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .ms-pay-method-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #dadce0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ms-pay-method-icon svg { width: 100%; height: 100%; }
+  .ms-pay-method-info { flex: 1; min-width: 0; line-height: 1.3; }
+  .ms-pay-method-name { font-size: 12.5px; font-weight: 800; color: #0a1818; }
+  .ms-pay-method-sub  { font-size: 10.5px; color: #6c7a7a; margin-top: 2px; }
+  .ms-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .ms-action {
+    padding: 11px 8px;
+    background: #fff;
+    border: 1.2px solid #e8edec;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0a1818;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ms-action:hover { border-color: #2f8a72; color: #2f8a72; }
+  .ms-action.danger { color: #b91c1c; }
+  .ms-action.danger:hover { border-color: #b91c1c; }
+
+  /* Add-ons reference card */
+  .ms-addons-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(10,24,24,0.06);
+    border: 1px solid #ecf2f0;
+  }
+  .ms-addons-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .ms-addons-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: 0.2px;
+  }
+  .ms-addons-count {
+    font-size: 10px;
+    font-weight: 800;
+    color: #2f8a72;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+  }
+  .ms-addon-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 0;
+    border-top: 1px dashed #eef2f1;
+  }
+  .ms-addon-item:first-of-type { border-top: 0; padding-top: 4px; }
+  .ms-addon-item:last-of-type { padding-bottom: 0; }
+  .ms-addon-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ecf7f2, #d6efe5);
+    border: 1px solid #cfe6dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ms-addon-icon svg {
+    width: 18px; height: 18px;
+    stroke: #2f8a72;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ms-addon-info { flex: 1; min-width: 0; line-height: 1.25; }
+  .ms-addon-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: -0.1px;
+  }
+  .ms-addon-sub {
+    font-size: 10.5px;
+    color: #6c7a7a;
+    margin-top: 2px;
+    font-weight: 600;
+  }
+  .ms-addon-tag {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #2f8a72;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    padding: 3px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .ms-addons-empty {
+    font-size: 12px;
+    color: #6c7a7a;
+    text-align: center;
+    padding: 14px 0 4px;
+    font-weight: 600;
+  }
+
+  /* Sessions card (total / completed / upcoming) */
+  .ms-sessions-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(10,24,24,0.06);
+    border: 1px solid #ecf2f0;
+    margin-top: 12px;
+  }
+  .ms-sessions-head {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+  }
+  .ms-sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .ms-sess-stat {
+    background: linear-gradient(160deg, #ecf7f2 0%, #d6efe5 100%);
+    border: 1px solid #cfe6dc;
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .ms-sess-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1f5b4f;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .ms-sess-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #4a7064;
+    letter-spacing: 0.45px;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+  .ms-info-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 9px 11px;
+    background: #fff8e6;
+    border: 1px solid #f7e3a3;
+    border-radius: 8px;
+    font-size: 11.5px;
+    color: #6d531a;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .ms-info-note .info-ico {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+    color: #b07c0a;
+    margin-top: 1px;
+  }
+
+  /* Bill summary history */
+  .ms-bill-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(10,24,24,0.06);
+    border: 1px solid #ecf2f0;
+    margin-top: 12px;
+  }
+  .ms-bill-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .ms-bill-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: 0.2px;
+  }
+  .ms-bill-link {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #2f8a72;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .ms-bill-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px dashed #eef2f1;
+  }
+  .ms-bill-row:first-of-type { border-top: 0; padding-top: 4px; }
+  .ms-bill-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ms-bill-icon svg {
+    width: 14px; height: 14px;
+    stroke: #2f8a72;
+    stroke-width: 1.8;
+    fill: none;
+  }
+  .ms-bill-info { flex: 1; min-width: 0; line-height: 1.25; }
+  .ms-bill-desc {
+    font-size: 12px;
+    font-weight: 800;
+    color: #0a1818;
+  }
+  .ms-bill-date {
+    font-size: 10.5px;
+    color: #6c7a7a;
+    margin-top: 2px;
+    font-weight: 600;
+  }
+  .ms-bill-amt {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .ms-bill-amt-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0a1818;
+  }
+  .ms-bill-status {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    margin-top: 3px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .ms-bill-status.paid {
+    color: #fff;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    box-shadow: 0 1px 3px rgba(47,138,114,0.28);
+  }
+  .ms-bill-status.upcoming {
+    color: #6d531a;
+    background: #fff8e6;
+    border: 1px solid #f7e3a3;
+  }
+
+  /* Contact us card */
+  .ms-contact-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 2px 6px rgba(10,24,24,0.06);
+    border: 1px solid #ecf2f0;
+    margin-top: 12px;
+  }
+  .ms-contact-head {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+  }
+  .ms-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 0;
+    border-top: 1px dashed #eef2f1;
+    cursor: pointer;
+  }
+  .ms-contact-row:first-of-type { border-top: 0; padding-top: 4px; }
+  .ms-contact-row:last-of-type { padding-bottom: 0; }
+  .ms-contact-icon {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ecf7f2, #d6efe5);
+    border: 1px solid #cfe6dc;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ms-contact-icon svg {
+    width: 16px; height: 16px;
+    stroke: #2f8a72;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ms-contact-info { flex: 1; min-width: 0; line-height: 1.25; }
+  .ms-contact-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #6c7a7a;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .ms-contact-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0a1818;
+    margin-top: 2px;
+    letter-spacing: -0.1px;
+  }
+  .ms-contact-chev {
+    color: #aab4b4;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Account details list */
+  .ad-heading {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0a1818;
+    margin: 20px 0 10px;
+    letter-spacing: -0.3px;
+  }
+  .ad-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f1f4f3;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ad-item:hover { background: #e8edec; }
+  .ad-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2f8a72;
+  }
+  .ad-icon svg {
+    width: 16px; height: 16px;
+    stroke: #2f8a72;
+    stroke-width: 1.8;
+    fill: none;
+  }
+  .ad-label {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a1818;
+  }
+  .ad-chev {
+    color: #aab4b4;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* Highlight Profile nav-item when on profile page */
+  .scroll-area[data-page="profile"] ~ .bottom-nav .nav-item { color: #6c7a7a; }
+  .scroll-area[data-page="profile"] ~ .bottom-nav .nav-item:first-child { color: #6c7a7a; background: transparent; }
+  .scroll-area[data-page="profile"] ~ .bottom-nav .nav-item:last-child {
+    color: #2f8a72;
+    font-weight: 800;
+  }
+
+  /* ===== Payment success overlay ===== */
+  .success-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #ecf7f2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    border-radius: 34px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .success-overlay.show { opacity: 1; pointer-events: auto; }
+  .success-tick-wrap {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: rgba(47,138,114,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .success-tick-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 2px solid rgba(47,138,114,0.25);
+    animation: ripple 1.4s ease-out infinite;
+  }
+  @keyframes ripple {
+    0% { transform: scale(0.85); opacity: 0.9; }
+    100% { transform: scale(1.25); opacity: 0; }
+  }
+  .success-tick-wrap svg { width: 80px; height: 80px; }
+  .st-circle {
+    fill: #2f8a72;
+    stroke: none;
+  }
+  .st-check {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+  }
+  .success-overlay.show .st-check {
+    animation: stroke-draw 0.45s ease-out 0.25s forwards;
+  }
+  @keyframes stroke-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  .success-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1f5b4f;
+    margin-top: 22px;
+    letter-spacing: -0.4px;
+  }
+  .success-sub {
+    font-size: 12.5px;
+    color: #4a5858;
+    margin-top: 5px;
+    font-weight: 600;
+  }
+  .success-amount {
+    font-size: 13px;
+    color: #2f8a72;
+    margin-top: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    background: rgba(47,138,114,0.10);
+    border-radius: 5px;
+  }
 
   /* Add-ons inside each plan — collapsed by default, expand for selected plan */
   .plan-addons { display: none; }
@@ -3490,8 +4672,22 @@
       <button class="sit-btn" data-sit="E">
         <span class="sit-num">5</span>
         <span class="sit-content">
-          <span class="sit-title">Subscription</span>
-          <span class="sit-sub">Plans + add-ons + discounts</span>
+          <span class="sit-title">Post Payment</span>
+          <span class="sit-sub">Success → Profile + subscription</span>
+        </span>
+      </button>
+      <button class="sit-btn" data-sit="F">
+        <span class="sit-num">6</span>
+        <span class="sit-content">
+          <span class="sit-title">Subscribe Later</span>
+          <span class="sit-sub">User self-serve · no discount</span>
+        </span>
+      </button>
+      <button class="sit-btn" data-sit="G">
+        <span class="sit-num">7</span>
+        <span class="sit-content">
+          <span class="sit-title">Booking Paid</span>
+          <span class="sit-sub">₹1,000 paid · plan pending</span>
         </span>
       </button>
     </div>
@@ -3744,6 +4940,35 @@
            <div class="confirmed-banner">
              <span class="cb-mark">✓</span>
              <span>Booking confirmed · ₹1,000 paid</span>
+           </div>
+
+           <!-- Booking-paid hero (sit G only) -->
+           <div class="booking-paid-hero">
+             <div class="bph-tick">
+               <svg viewBox="0 0 16 16"><path d="M3.5 8.2 l3 3 l6 -6.5"/></svg>
+             </div>
+             <div class="bph-body">
+               <div class="bph-title">₹1,000 Booking Paid</div>
+               <div class="bph-sub">Subscribe today to lock in your <strong>5% off</strong></div>
+             </div>
+           </div>
+           <div class="bph-info-card">
+             <div class="bph-info-row">
+               <span>Booking amount</span>
+               <span><strong>₹1,000</strong>&nbsp;&nbsp;<span class="pill-paid">Paid</span></span>
+             </div>
+             <div class="bph-info-row">
+               <span>Adjustable against plan</span>
+               <strong>Yes · auto-applied</strong>
+             </div>
+             <div class="bph-info-row">
+               <span>Plan discount</span>
+               <span class="pill-discount">5% OFF</span>
+             </div>
+             <div class="bph-info-row">
+               <span>Valid until</span>
+               <strong>12 May 2026 · 11:59 PM</strong>
+             </div>
            </div>
 
            <!-- Pending booking (only when trainer has clicked Book Next Session) -->
@@ -4195,6 +5420,61 @@
          </div>
        </div><!-- /page-payment -->
 
+       <!-- ===== PROFILE PAGE (post-payment) ===== -->
+       <div class="page-profile">
+         <div class="profile-header">Profile</div>
+
+         <div class="profile-hero">
+           <div class="ph-avatar"></div>
+           <div class="ph-info">
+             <div class="ph-name">Riddhi</div>
+             <div class="ph-phone">+91 74118 22272</div>
+           </div>
+         </div>
+
+         <!-- Subscription-active banner (entry point to Manage Subscription) -->
+         <div class="pay-confirm-banner" id="manageSubBtn">
+           <div class="pcb-tick">
+             <svg viewBox="0 0 16 16"><path d="M3.5 8.2 l3 3 l6 -6.5"/></svg>
+           </div>
+           <div class="pcb-body">
+             <div class="pcb-title" id="pcbTitle">Subscription active</div>
+             <div class="pcb-sub" id="pcbSub">View subscription</div>
+           </div>
+           <span class="pcb-chev">›</span>
+         </div>
+
+         <!-- Account Details list -->
+         <div class="ad-heading">Account Details</div>
+         <div class="ad-item">
+           <div class="ad-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.2"/><path d="M3 19c0-3 2.5-5.2 6-5.2s6 2.2 6 5.2"/><circle cx="17" cy="8" r="2.4"/><path d="M15 14c2 0 4 1.3 4 3.5"/></svg></div>
+           <div class="ad-label">Add Family Member</div>
+           <span class="ad-chev">›</span>
+         </div>
+         <div class="ad-item">
+           <div class="ad-icon"><svg viewBox="0 0 24 24"><path d="M5 4h3l2 4-2 1c1 3 3 5 6 6l1-2 4 2v3c0 1-1 2-2 2C9 20 4 15 4 7c0-1 1-2 2-2"/></svg></div>
+           <div class="ad-label">Support Call</div>
+           <span class="ad-chev">›</span>
+         </div>
+         <div class="ad-item">
+           <div class="ad-icon"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h6"/><path d="M10 16h6"/></svg></div>
+           <div class="ad-label">Reports</div>
+           <span class="ad-chev">›</span>
+         </div>
+         <div class="ad-item">
+           <div class="ad-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M8 3v4"/><path d="M16 3v4"/></svg></div>
+           <div class="ad-label">Events</div>
+           <span class="ad-chev">›</span>
+         </div>
+         <div class="ad-item">
+           <div class="ad-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.6" fill="#2f8a72" stroke="none"/></svg></div>
+           <div class="ad-label">About Us</div>
+           <span class="ad-chev">›</span>
+         </div>
+
+         <div style="height: 28px;"></div>
+       </div><!-- /page-profile -->
+
       </div>
 
       <!-- Floating call button -->
@@ -4301,6 +5581,153 @@
 
               <div class="pdf-page-num">— Page 1 of 2 —</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment success overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-tick-wrap">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle class="st-circle" cx="40" cy="40" r="34" />
+            <path class="st-check" d="M24 41 l12 12 l22 -24" />
+          </svg>
+        </div>
+        <div class="success-title">Payment Successful</div>
+        <div class="success-sub">Welcome to your wellness journey</div>
+        <div class="success-amount" id="successAmount">₹0 paid</div>
+      </div>
+
+      <!-- Manage Subscription detail modal -->
+      <div class="manage-modal" id="manageModal">
+        <div class="manage-modal-backdrop"></div>
+        <div class="manage-modal-sheet">
+          <div class="manage-modal-header">
+            <button class="manage-modal-back" id="manageClose">‹</button>
+            <div class="manage-modal-title" id="manageModalTitle">Manage Subscription</div>
+          </div>
+          <div class="manage-modal-body">
+
+            <!-- Subscription gist -->
+            <div class="subscription-card" style="margin-top:0; margin-bottom:12px;">
+              <div class="sub-card-row1">
+                <span class="sub-card-badge" id="msBadge"><span class="pulse"></span>ACTIVE</span>
+                <span class="sub-days-left" id="msDaysLeft">82 days left</span>
+              </div>
+              <div class="sub-card-title" id="msPlanName">3-Month Plan</div>
+
+              <div class="sub-meta-grid">
+                <div class="sub-meta">
+                  <div class="sub-meta-label" id="msStartedLabel">Start date</div>
+                  <div class="sub-meta-value" id="msStarted">11 May 2026</div>
+                </div>
+                <div class="sub-meta">
+                  <div class="sub-meta-label" id="msRenewsLabel">End date</div>
+                  <div class="sub-meta-value" id="msRenews">11 Aug 2026</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sessions: total / completed / upcoming -->
+            <div class="ms-sessions-card">
+              <div class="ms-sessions-head">Sessions</div>
+              <div class="ms-sessions-grid">
+                <div class="ms-sess-stat">
+                  <div class="ms-sess-num" id="msTotalSessions">36</div>
+                  <div class="ms-sess-label">Total</div>
+                </div>
+                <div class="ms-sess-stat">
+                  <div class="ms-sess-num" id="msCompletedSessions">0</div>
+                  <div class="ms-sess-label">Completed</div>
+                </div>
+                <div class="ms-sess-stat">
+                  <div class="ms-sess-num" id="msUpcomingSessions">36</div>
+                  <div class="ms-sess-label">Upcoming</div>
+                </div>
+              </div>
+              <div class="ms-info-note">
+                <svg class="info-ico" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-1 4h2v5h-2z"/></svg>
+                <span>Your exercise plan and session timing will be decided soon.</span>
+              </div>
+            </div>
+
+            <!-- Add-ons reference -->
+            <div class="ms-addons-card" style="margin-top:12px;">
+              <div class="ms-addons-head">
+                <div class="ms-addons-title">Add-ons included</div>
+                <span class="ms-addons-count" id="msAddonsCount">3 active</span>
+              </div>
+              <div id="msAddonsList">
+                <div class="ms-addon-item">
+                  <div class="ms-addon-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 4c-3 4-6 6-6 11a6 6 0 0 0 12 0c0-5-3-7-6-11z"/><path d="M12 11v5"/></svg>
+                  </div>
+                  <div class="ms-addon-info">
+                    <div class="ms-addon-name">Holistic Wellness</div>
+                    <div class="ms-addon-sub">Wellness coach will call you soon</div>
+                  </div>
+                  <span class="ms-addon-tag">Included</span>
+                </div>
+                <div class="ms-addon-item">
+                  <div class="ms-addon-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 4c2 2 2 4 0 5"/><path d="M9 11l6 4"/></svg>
+                  </div>
+                  <div class="ms-addon-info">
+                    <div class="ms-addon-name">Nutrition Consultation</div>
+                    <div class="ms-addon-sub">Nutritionist will call you soon</div>
+                  </div>
+                  <span class="ms-addon-tag">Included</span>
+                </div>
+                <div class="ms-addon-item">
+                  <div class="ms-addon-icon">
+                    <svg viewBox="0 0 24 24"><path d="M7 4v6a4 4 0 0 0 8 0V4"/><path d="M5 4h4"/><path d="M13 4h4"/><circle cx="18" cy="15" r="2.5"/><path d="M11 14v3a3 3 0 0 0 4.5 2.6"/></svg>
+                  </div>
+                  <div class="ms-addon-info">
+                    <div class="ms-addon-name">Dr. Consultation</div>
+                    <div class="ms-addon-sub">Doctor will call you soon</div>
+                  </div>
+                  <span class="ms-addon-tag">Included</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bill summary / history -->
+            <div class="ms-bill-card">
+              <div class="ms-bill-head">
+                <div class="ms-bill-title">Bill summary</div>
+                <span class="ms-bill-link">View invoice ›</span>
+              </div>
+              <div id="msBillList">
+                <!-- injected by JS -->
+              </div>
+            </div>
+
+            <!-- Contact us -->
+            <div class="ms-contact-card">
+              <div class="ms-contact-head">Contact us</div>
+              <div class="ms-contact-row">
+                <div class="ms-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M5 4h3l2 4-2 1c1 3 3 5 6 6l1-2 4 2v3c0 1-1 2-2 2C9 20 4 15 4 7c0-1 1-2 2-2"/></svg>
+                </div>
+                <div class="ms-contact-info">
+                  <div class="ms-contact-label">Helpline</div>
+                  <div class="ms-contact-value">+91 80000 12345</div>
+                </div>
+                <span class="ms-contact-chev">›</span>
+              </div>
+              <div class="ms-contact-row">
+                <div class="ms-contact-icon">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg>
+                </div>
+                <div class="ms-contact-info">
+                  <div class="ms-contact-label">Email</div>
+                  <div class="ms-contact-value">support@wellness.app</div>
+                </div>
+                <span class="ms-contact-chev">›</span>
+              </div>
+            </div>
+
+            <div style="height: 24px;"></div>
           </div>
         </div>
       </div>
@@ -4524,7 +5951,7 @@
 
     card.addEventListener('click', () => {
       const sit = scrollArea.closest('.screen').dataset.sit;
-      if (sit === 'D' || sit === 'E') {
+      if (sit === 'D') {
         // Reset and show the rate-session prompt
         rating = 0; highlightStars(0);
         rateModal.classList.add('open');
@@ -4541,6 +5968,28 @@
         // Reset the booking flow when going to pre-session states
         if (sit === 'A' || sit === 'B') {
           document.body.removeAttribute('data-booking-state');
+        }
+        // Auto-route the page for this situation
+        if (sit === 'E') {
+          document.body.dataset.profileMode = 'subscription';
+          if (typeof refreshProfile === 'function') refreshProfile();
+          go('profile');
+        } else if (sit === 'A' || sit === 'B' || sit === 'C') {
+          go('home');
+        } else if (sit === 'D') {
+          go('detail');
+        } else if (sit === 'F') {
+          // Self-serve plans: clear any prior booking state, repaint prices without discount
+          document.body.removeAttribute('data-booking-state');
+          go('detail');
+          if (typeof refreshBullets === 'function') refreshBullets();
+          if (typeof updateAddonDiscounts === 'function') updateAddonDiscounts();
+        } else if (sit === 'G') {
+          // Booking-paid state shown as the profile page with a booking-mode banner
+          document.body.dataset.bookingState = 'confirmed';
+          document.body.dataset.profileMode  = 'booking';
+          if (typeof refreshProfile === 'function') refreshProfile();
+          go('profile');
         }
       });
     });
@@ -4573,6 +6022,9 @@
     const addonBadges    = document.querySelectorAll('.addon-discount[data-addon]');
 
     function getEffectiveAddonPct(addonId) {
+      // Self-serve mode (Step 6): no trainer discount
+      const sit = document.querySelector('.screen')?.dataset.sit;
+      if (sit === 'F') return 0;
       if (!discountSlider) return 0;
       const selected = Array.from(addonSelects).filter(c => c.checked).map(c => c.value);
       const pct = parseInt(discountSlider.value, 10);
@@ -4720,6 +6172,18 @@
     // Refresh user-side bullets to reflect the selected plan's state
     function refreshBullets() {
       document.querySelectorAll('.addon-bullet').forEach(b => b.classList.remove('active'));
+      const sit = document.querySelector('.screen')?.dataset.sit;
+      if (sit === 'F') {
+        // Self-serve: render active state for every plan's bullets independently
+        Object.keys(planAddonState).forEach(pid => {
+          planAddonState[pid].forEach(addonId => {
+            document.querySelectorAll(
+              `.addon-bullet[data-plan-id="${pid}"][data-addon-id="${addonId}"]`
+            ).forEach(b => b.classList.add('active'));
+          });
+        });
+        return;
+      }
       const planId = getSelectedPlanId();
       if (!planId) return;
       planAddonState[planId].forEach(addonId => {
@@ -4728,6 +6192,21 @@
         ).forEach(b => b.classList.add('active'));
       });
     }
+
+    // Self-serve: user toggles add-on bullets directly (only in sit=F)
+    document.querySelectorAll('.addon-bullet').forEach(bullet => {
+      bullet.addEventListener('click', () => {
+        const sit = document.querySelector('.screen')?.dataset.sit;
+        if (sit !== 'F') return;
+        const planId  = bullet.dataset.planId;
+        const addonId = bullet.dataset.addonId;
+        if (!planAddonState[planId]) return;
+        if (planAddonState[planId].has(addonId)) planAddonState[planId].delete(addonId);
+        else                                      planAddonState[planId].add(addonId);
+        refreshBullets();
+        if (typeof updatePaymentSummary === 'function') updatePaymentSummary();
+      });
+    });
 
     // Sync trainer's checkbox UI to the currently-selected plan's state
     function syncTrainerCheckboxesFromPlan() {
@@ -4981,6 +6460,256 @@
         if (radio) radio.checked = true;
       });
     });
+
+    // ===== Profile page + payment success flow =====
+    const successOverlay = document.getElementById('successOverlay');
+    const successAmount  = document.getElementById('successAmount');
+
+    // Manage Subscription modal elements
+    const manageModal       = document.getElementById('manageModal');
+    const manageSubBtn      = document.getElementById('manageSubBtn');
+    const manageClose       = document.getElementById('manageClose');
+    const manageModalTitle  = document.getElementById('manageModalTitle');
+    const pcbTitle          = document.getElementById('pcbTitle');
+    const pcbSub            = document.getElementById('pcbSub');
+    const msBadge           = document.getElementById('msBadge');
+    const msPlanName        = document.getElementById('msPlanName');
+    const msStarted         = document.getElementById('msStarted');
+    const msStartedLabel    = document.getElementById('msStartedLabel');
+    const msRenews          = document.getElementById('msRenews');
+    const msRenewsLabel     = document.getElementById('msRenewsLabel');
+    const msDaysLeft        = document.getElementById('msDaysLeft');
+    const msTotalSessions   = document.getElementById('msTotalSessions');
+    const msCompletedSessions = document.getElementById('msCompletedSessions');
+    const msUpcomingSessions  = document.getElementById('msUpcomingSessions');
+    const msAddonsList      = document.getElementById('msAddonsList');
+    const msAddonsCount     = document.getElementById('msAddonsCount');
+    const msBillList        = document.getElementById('msBillList');
+
+    const planDurationMonths = { '1m': 1, '3m': 3, '6m': 6 };
+    const planSessionsCount  = { '1m': 12, '3m': 36, '6m': 72 };
+    const TODAY = new Date(2026, 4, 11); // 2026-05-11
+
+    const addonRefMap = {
+      holistic: {
+        name: 'Holistic Wellness',
+        sub: 'Wellness coach will call you soon',
+        icon: '<svg viewBox="0 0 24 24"><path d="M12 4c-3 4-6 6-6 11a6 6 0 0 0 12 0c0-5-3-7-6-11z"/><path d="M12 11v5"/></svg>'
+      },
+      nutrition: {
+        name: 'Nutrition Consultation',
+        sub: 'Nutritionist will call you soon',
+        icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 4c2 2 2 4 0 5"/><path d="M9 11l6 4"/></svg>'
+      },
+      doctor: {
+        name: 'Dr. Consultation',
+        sub: 'Doctor will call you soon',
+        icon: '<svg viewBox="0 0 24 24"><path d="M7 4v6a4 4 0 0 0 8 0V4"/><path d="M5 4h4"/><path d="M13 4h4"/><circle cx="18" cy="15" r="2.5"/><path d="M11 14v3a3 3 0 0 0 4.5 2.6"/></svg>'
+      }
+    };
+
+    function refreshProfile() {
+      const mode = document.body.dataset.profileMode || 'subscription';
+      const isBooking = (mode === 'booking');
+
+      // ---------------- Booking-paid mode ----------------
+      if (isBooking) {
+        const start = TODAY;
+        const validUntil = addMonths(start, 0);
+        validUntil.setDate(validUntil.getDate() + 1);
+
+        if (pcbTitle) pcbTitle.textContent = '₹1,000 Booking paid';
+        if (pcbSub)   pcbSub.textContent   = 'View booking details';
+        if (manageModalTitle) manageModalTitle.textContent = 'Booking Details';
+        if (msBadge) msBadge.innerHTML = '<span class="pulse"></span>BOOKING';
+        if (msPlanName) msPlanName.textContent = 'Free trial booking';
+        if (msStartedLabel) msStartedLabel.textContent = 'Paid on';
+        if (msStarted)      msStarted.textContent      = fmtDate(start);
+        if (msRenewsLabel)  msRenewsLabel.textContent  = 'Valid until';
+        if (msRenews)       msRenews.textContent       = `${fmtDate(validUntil)} · 11:59 PM`;
+        if (msDaysLeft)     msDaysLeft.textContent     = '5% off if you subscribe today';
+
+        // Bill: single ₹1,000 paid row + an upcoming "Subscribe to plan" row
+        if (msBillList) {
+          const cardIcon = '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>';
+          const upcomingIcon = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+          msBillList.innerHTML = `
+            <div class="ms-bill-row">
+              <div class="ms-bill-icon">${cardIcon}</div>
+              <div class="ms-bill-info">
+                <div class="ms-bill-desc">Booking amount</div>
+                <div class="ms-bill-date">${fmtDate(start)} · UPI · Google Pay</div>
+              </div>
+              <div class="ms-bill-amt">
+                <div class="ms-bill-amt-value">₹1,000</div>
+                <span class="ms-bill-status paid">Paid</span>
+              </div>
+            </div>
+            <div class="ms-bill-row">
+              <div class="ms-bill-icon">${upcomingIcon}</div>
+              <div class="ms-bill-info">
+                <div class="ms-bill-desc">Subscribe to a plan</div>
+                <div class="ms-bill-date">Adjustable against any plan</div>
+              </div>
+              <div class="ms-bill-amt">
+                <div class="ms-bill-amt-value">—</div>
+                <span class="ms-bill-status upcoming">Pending</span>
+              </div>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      // ---------------- Subscription mode (existing) ----------------
+      const planId = getSelectedPlanId() || '3m';
+      const plan   = planMeta[planId];
+      const start  = TODAY;
+      const end    = addMonths(start, planDurationMonths[planId]);
+      const total  = planSessionsCount[planId];
+      const done   = 0;
+      const left   = total - done;
+
+      if (pcbTitle) pcbTitle.textContent = 'Subscription active';
+      if (pcbSub)   pcbSub.textContent   = 'View subscription';
+      if (manageModalTitle) manageModalTitle.textContent = 'Manage Subscription';
+      if (msBadge) msBadge.innerHTML = '<span class="pulse"></span>ACTIVE';
+      if (msPlanName) msPlanName.textContent = plan.name;
+      if (msStartedLabel) msStartedLabel.textContent = 'Start date';
+      if (msStarted)  msStarted.textContent  = fmtDate(start);
+      if (msRenewsLabel) msRenewsLabel.textContent = 'End date';
+      if (msRenews)   msRenews.textContent   = fmtDate(end);
+
+      // Days left until plan ends
+      if (msDaysLeft) {
+        const msPerDay = 1000 * 60 * 60 * 24;
+        const daysLeft = Math.max(0, Math.round((end - start) / msPerDay));
+        msDaysLeft.textContent = `${daysLeft} days left`;
+      }
+
+      // Sessions stats
+      if (msTotalSessions)     msTotalSessions.textContent     = total;
+      if (msCompletedSessions) msCompletedSessions.textContent = done;
+      if (msUpcomingSessions)  msUpcomingSessions.textContent  = left;
+
+      // Add-ons list — render whatever is currently selected for this plan
+      if (msAddonsList && msAddonsCount) {
+        const addonSet = (typeof planAddonState !== 'undefined' && planAddonState[planId]) ? planAddonState[planId] : new Set();
+        const ids = Array.from(addonSet).filter(id => addonRefMap[id]);
+        if (ids.length === 0) {
+          msAddonsList.innerHTML = `<div class="ms-addons-empty">No add-ons included in this plan</div>`;
+          msAddonsCount.style.display = 'none';
+        } else {
+          msAddonsCount.style.display = 'inline-block';
+          msAddonsCount.textContent = `${ids.length} active`;
+          msAddonsList.innerHTML = ids.map(id => {
+            const a = addonRefMap[id];
+            return `
+              <div class="ms-addon-item">
+                <div class="ms-addon-icon">${a.icon}</div>
+                <div class="ms-addon-info">
+                  <div class="ms-addon-name">${a.name}</div>
+                  <div class="ms-addon-sub">${a.sub}</div>
+                </div>
+                <span class="ms-addon-tag">Included</span>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // Bill summary — build receipt rows based on payment mode
+      if (msBillList) {
+        const r = computeTotal(planId);
+        const planFull = r.plan;
+        const addonsTotal = r.addons;
+        const isInst = (payOption === 'i2' || payOption === 'i3');
+        const discount = isInst ? 0 : Math.round(planFull * 0.05);
+        const grand = (isInst ? planFull : planFull - discount) + addonsTotal;
+        const installments = isInst ? (payOption === 'i2' ? 2 : 3) : 1;
+        const perInst = Math.round(grand / installments);
+
+        const cardIcon = '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>';
+        const upcomingIcon = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+
+        const rows = [];
+        rows.push(`
+          <div class="ms-bill-row">
+            <div class="ms-bill-icon">${cardIcon}</div>
+            <div class="ms-bill-info">
+              <div class="ms-bill-desc">${plan.name}${addonsTotal > 0 ? ' + add-ons' : ''}</div>
+              <div class="ms-bill-date">${fmtDate(start)} · UPI · Google Pay</div>
+            </div>
+            <div class="ms-bill-amt">
+              <div class="ms-bill-amt-value">${fmt(perInst)}</div>
+              <span class="ms-bill-status paid">Paid</span>
+            </div>
+          </div>
+        `);
+
+        for (let i = 1; i < installments; i++) {
+          const debitDate = addMonths(start, i);
+          const ord = i === 1 ? '2nd' : '3rd';
+          rows.push(`
+            <div class="ms-bill-row">
+              <div class="ms-bill-icon">${upcomingIcon}</div>
+              <div class="ms-bill-info">
+                <div class="ms-bill-desc">${ord} installment auto-debit</div>
+                <div class="ms-bill-date">${fmtDate(debitDate)} · UPI Autopay</div>
+              </div>
+              <div class="ms-bill-amt">
+                <div class="ms-bill-amt-value">${fmt(perInst)}</div>
+                <span class="ms-bill-status upcoming">Upcoming</span>
+              </div>
+            </div>
+          `);
+        }
+
+        msBillList.innerHTML = rows.join('');
+      }
+    }
+
+    // Manage modal open/close
+    if (manageSubBtn && manageModal) {
+      manageSubBtn.addEventListener('click', () => {
+        refreshProfile();
+        manageModal.classList.add('open');
+      });
+    }
+    if (manageClose && manageModal) {
+      manageClose.addEventListener('click', () => manageModal.classList.remove('open'));
+      manageModal.querySelector('.manage-modal-backdrop')
+        .addEventListener('click', () => manageModal.classList.remove('open'));
+    }
+
+    function showPaymentSuccess() {
+      if (!successOverlay) return;
+      // Capture the amount shown in the Pay Now / autopay button
+      const planId = getSelectedPlanId();
+      if (planId && successAmount) {
+        const isInst = payOption === 'i2' || payOption === 'i3';
+        const r = computeTotal(planId);
+        const planFull = r.plan;
+        const addonsTotal = r.addons;
+        const discount = Math.round(planFull * 0.05);
+        const fullGrand = (planFull - discount) + addonsTotal;
+        const instGrand = planFull + addonsTotal;
+        const inst = isInst ? (payOption === 'i2' ? 2 : 3) : 1;
+        const amt = isInst ? Math.round(instGrand / inst) : fullGrand;
+        successAmount.textContent = `${fmt(amt)} paid` + (isInst ? ` · 1st of ${inst}` : '');
+      }
+      successOverlay.classList.add('show');
+      setTimeout(() => {
+        refreshProfile();
+        const sitE = document.querySelector('.sit-btn[data-sit="E"]');
+        if (sitE) sitE.click(); // this also calls go('profile')
+        setTimeout(() => successOverlay.classList.remove('show'), 320);
+      }, 1700);
+    }
+
+    if (payNowBtn) payNowBtn.addEventListener('click', showPaymentSuccess);
+    const setupAutopayBtn = document.getElementById('setupAutopayBtn');
+    if (setupAutopayBtn) setupAutopayBtn.addEventListener('click', showPaymentSuccess);
 
     // ===== Trainer OTP modal =====
     const startBtn   = document.getElementById('startBtn');
