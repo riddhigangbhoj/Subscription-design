@@ -2732,6 +2732,37 @@
   }
   .pm-row.open + .pm-body { max-height: 320px; }
 
+  /* Cash on Delivery body */
+  .pm-cod-note {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0 12px;
+    align-items: flex-start;
+  }
+  .pm-cod-note .cod-ico {
+    width: 26px; height: 26px;
+    color: #2f8a72;
+    flex-shrink: 0;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    border-radius: 8px;
+    padding: 4px;
+  }
+  .pm-cod-note strong {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #0a1818;
+    line-height: 1.3;
+  }
+  .pm-cod-sub {
+    font-size: 11.5px;
+    color: #4a5858;
+    line-height: 1.4;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
   /* UPI app grid */
   .pm-apps {
     display: grid;
@@ -3754,8 +3785,7 @@
   .screen[data-sit="B"] .booking-body,
   .screen[data-sit="D"] .booking-body,
   .screen[data-sit="E"] .booking-body,
-  .screen[data-sit="F"] .booking-body,
-  .screen[data-sit="G"] .booking-body { min-height: 0; }
+  .screen[data-sit="F"] .booking-body { min-height: 0; }
 
   /* Left stub: muted green gradient, vertically centered time */
   .booking .b-time {
@@ -3927,17 +3957,92 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   }
 
-  /* Sit C: live (in-session) stub — soft warm yellow */
-  .screen[data-sit="C"] .booking .b-time {
-    background: linear-gradient(160deg, #2f8a72 0%, #246b59 100%);
+  /* ===== Sit G (Booking amount paid): same dark-green base + white floating card ===== */
+  .screen[data-sit="G"] .booking {
+    background: linear-gradient(135deg, #2f8a72 0%, #246b59 100%);
+    border-color: #1f5b4f;
   }
-  .screen[data-sit="C"] .booking {
+  .screen[data-sit="G"] .booking-heading {
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .screen[data-sit="G"] .booking .b-time {
+    background: transparent;
+  }
+  .screen[data-sit="G"] .booking .b-time::after { display: none; }
+  .screen[data-sit="G"] .booking-variant.v-G .copy {
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 8px 10px 8px 4px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .screen[data-sit="G"] .b-photo-mini {
     border-color: #cfe6dc;
-    background: linear-gradient(160deg, #f4faf7 0%, #e6f2ec 100%);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  /* "Booking amount paid" status row inside the v-G card */
+  .b-paid-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 9px;
+    border-top: 1px solid #cfe6dc;
+  }
+  .b-paid-tick {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    color: #2f8a72;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .b-paid-tick svg { width: 12px; height: 12px; }
+  .b-paid-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6c7a7a;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .b-paid-amount {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f5b4f;
+    margin-left: auto;
+    letter-spacing: -0.1px;
+  }
+
+  /* Sit C (Session ongoing): same dark-green base + white floating card pattern */
+  .screen[data-sit="C"] .booking {
+    background: linear-gradient(135deg, #2f8a72 0%, #246b59 100%);
+    border-color: #1f5b4f;
   }
   .screen[data-sit="C"] .booking-heading {
-    background: linear-gradient(135deg, #246b59 0%, #1f5b4f 100%);
-    border-bottom-color: #2f8a72;
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .screen[data-sit="C"] .booking .b-time {
+    background: transparent;
+  }
+  .screen[data-sit="C"] .booking .b-time::after { display: none; }
+  .screen[data-sit="C"] .booking-variant.v-C .copy {
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 8px 10px 8px 4px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.03);
+    gap: 8px;
+  }
+  .screen[data-sit="C"] .b-photo-mini {
+    border-color: #cfe6dc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   }
 
   /* Sits D–G: muted (completed) stub */
@@ -5599,7 +5704,7 @@
               </div>
             </div>
           </div>
-          <div class="booking-variant v-D v-E v-F v-G">
+          <div class="booking-variant v-D v-E v-F">
             <div class="b-time">
               <div class="day done">Done</div>
               <span class="hr">7:30 AM</span>
@@ -5613,6 +5718,32 @@
                 <div class="b-note">Tap to <span class="emph">see the report</span></div>
               </div>
               <div class="b-chevron">›</div>
+            </div>
+          </div>
+          <!-- Sit G: booking amount paid (₹1,000 paid, plan pending) -->
+          <div class="booking-variant v-G">
+            <div class="b-time">
+              <div class="b-date">15 May 2026</div>
+              <span class="hr">7:30 AM</span>
+            </div>
+            <div class="copy">
+              <div class="b-profile-tiny">
+                <div class="b-photo-mini"></div>
+                <div class="b-pmini-info">
+                  <div class="b-pmini-name-row">
+                    <span class="b-pmini-name">Dr. Anjali Sharma</span>
+                    <span class="b-pmini-rating">★ 4.9</span>
+                  </div>
+                  <div class="b-pmini-meta">100+ sessions done</div>
+                </div>
+              </div>
+              <div class="b-paid-row">
+                <span class="b-paid-tick" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.2 l3 3 l6 -6.5"/></svg>
+                </span>
+                <span class="b-paid-label">Booking amount paid</span>
+                <strong class="b-paid-amount">₹1,000</strong>
+              </div>
             </div>
           </div>
           </div><!-- /booking-body -->
@@ -6226,6 +6357,25 @@
                  <div class="pm-bank"><div class="pm-bank-logo" style="background:#f37020;">I</div><div class="pm-bank-name">ICICI Bank</div></div>
                  <div class="pm-bank"><div class="pm-bank-logo" style="background:#22409a;">S</div><div class="pm-bank-name">SBI</div></div>
                  <div class="pm-bank"><div class="pm-bank-logo" style="background:#97144d;">A</div><div class="pm-bank-name">Axis Bank</div></div>
+               </div>
+             </div>
+
+             <!-- Cash on Delivery -->
+             <div class="pm-row" data-pm="cod">
+               <input type="radio" name="pmethod" value="cod">
+               <div style="flex:1;min-width:0;">
+                 <div class="pm-label">Cash on Delivery</div>
+                 <div class="pm-sub">Pay the therapist at your first session</div>
+               </div>
+               <span class="pm-chev">›</span>
+             </div>
+             <div class="pm-body">
+               <div class="pm-cod-note">
+                 <svg class="cod-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="12" cy="13" r="2.5"/><path d="M7 11v4"/><path d="M17 11v4"/></svg>
+                 <div>
+                   <strong>Pay in cash on session day.</strong>
+                   <div class="pm-cod-sub">Therapist will collect the full amount before your first session. Please keep exact change ready.</div>
+                 </div>
                </div>
              </div>
            </div>
