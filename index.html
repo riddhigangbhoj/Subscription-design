@@ -3898,6 +3898,35 @@
   .screen[data-sit^="B"] .booking:active,
   .screen[data-sit="C"] .booking:active { transform: none; }
 
+  /* ===== Sits B / BE / BA: dark-green ticket with a white floating profile card ===== */
+  .screen[data-sit^="B"] .booking {
+    background: linear-gradient(135deg, #2f8a72 0%, #246b59 100%);
+    border-color: #1f5b4f;
+  }
+  .screen[data-sit^="B"] .booking-heading {
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  /* b-time stub becomes transparent white-on-green */
+  .screen[data-sit^="B"] .booking .b-time {
+    background: transparent;
+  }
+  .screen[data-sit^="B"] .booking .b-time::after { display: none; }
+  /* Float the profile + status row as a white card on top of the dark-green base */
+  .screen[data-sit^="B"] .booking-variant.v-B .copy {
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 8px 10px 8px 4px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.03);
+    gap: 8px;
+  }
+  /* Tone down the photo's green border so it doesn't clash with the white card on green */
+  .screen[data-sit^="B"] .b-photo-mini {
+    border-color: #cfe6dc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
   /* Sit C: live (in-session) stub — soft warm yellow */
   .screen[data-sit="C"] .booking .b-time {
     background: linear-gradient(160deg, #2f8a72 0%, #246b59 100%);
