@@ -297,14 +297,211 @@
   }
 
   .cc-elapsed { text-align: center; padding: 4px 0; }
-  .cc-elapsed-time {
-    font-size: 24px;
+
+  /* ===== Session Completed card (D, E) — restructured ===== */
+  .sd-section-heading {
+    font-size: 10px;
+    font-weight: 800;
+    color: #6c7a7a;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin: 2px 2px 8px;
+  }
+  .session-done-card {
+    background: linear-gradient(160deg, #ffffff 0%, #f3faf7 100%);
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid #d4ebe0;
+    box-shadow: 0 1px 2px rgba(15,60,47,0.04), 0 8px 20px -18px rgba(15,60,47,0.22);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .session-done-card::after {
+    content: "";
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,138,114,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sd-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .sd-check {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2f8a72, #16a085);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 1.5px 4px rgba(47,138,114,0.28);
+  }
+  .sd-check svg {
+    width: 13px; height: 13px;
+    stroke: #fff; stroke-width: 3.5; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .sd-photo {
+    flex: 0 0 42px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 2px solid #2f8a72;
+    background: #ddd url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop') center/cover;
+  }
+  .sd-trainer-info { flex: 1; min-width: 0; line-height: 1.3; }
+  .sd-trainer-name {
+    font-size: 14px;
     font-weight: 800;
     color: #0a1818;
-    font-family: 'Menlo', monospace;
-    letter-spacing: 0.5px;
-    margin-top: 3px;
+    letter-spacing: -0.1px;
   }
+  .sd-trainer-cred {
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: #2f8a72;
+    font-weight: 700;
+  }
+  .sd-duration {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    background: #ecf7f2;
+    border: 1px solid #cfe6dc;
+    border-radius: 7px;
+    padding: 5px 10px;
+    flex-shrink: 0;
+  }
+  .sd-duration .sd-dur-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1f5b4f;
+    letter-spacing: -0.2px;
+  }
+  .sd-duration .sd-dur-unit {
+    font-size: 10px;
+    font-weight: 700;
+    color: #4a7064;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sd-rate-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-top: 1px solid #cfe6dc;
+    position: relative;
+    z-index: 1;
+  }
+  .sd-rate-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #6c7a7a;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .sd-stars {
+    display: inline-flex;
+    gap: 4px;
+    font-size: 19px;
+    color: #f5c450;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .sd-stars span { transition: transform 0.12s; }
+  .sd-stars span:hover { transform: scale(1.2); }
+
+  /* Inline report CTA bar (replaces standalone report-card) */
+  .sd-report-cta { display: none; }
+  .screen[data-sit="D"] .scroll-area[data-page="detail"] .sd-report-cta { display: flex; }
+  .sd-report-cta {
+    align-items: center;
+    gap: 11px;
+    padding: 11px 12px;
+    margin-top: 4px;
+    background: #ffffff;
+    border: 1px solid #d4ebe0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.18s, border-color 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+  .sd-report-cta:hover {
+    border-color: #2f8a72;
+    box-shadow: 0 3px 10px rgba(47,138,114,0.14);
+    transform: translateY(-1px);
+  }
+  .sd-report-icon {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #2f8a72 0%, #16a085 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(47,138,114,0.28);
+    position: relative;
+  }
+  .sd-report-icon svg {
+    width: 16px; height: 16px;
+    stroke: #fff; stroke-width: 1.9; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .sd-report-icon::after {
+    content: "";
+    position: absolute;
+    bottom: -3px; right: -3px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #f3faf7;
+  }
+  .sd-report-icon::before {
+    content: "✓";
+    position: absolute;
+    bottom: -3px; right: -3px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    color: #2f8a72;
+    font-size: 9px;
+    font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .sd-report-body { flex: 1; min-width: 0; line-height: 1.25; }
+  .sd-report-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: -0.1px;
+  }
+  .sd-report-action {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2f8a72;
+    margin-top: 2px;
+    letter-spacing: 0.2px;
+  }
+  .sd-report-chev {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #d4ebe0;
+    display: flex; align-items: center; justify-content: center;
+    color: #2f8a72;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.18s;
+  }
+  .sd-report-cta:hover .sd-report-chev { transform: translateX(3px); }
 
   .cc-otp-box {
     background: linear-gradient(180deg, #2f8a72 0%, #246b59 100%);
@@ -403,12 +600,36 @@
 
   /* Plans card sized for detail page (no horizontal margin) */
   .plans-card {
-    background: #ececec;
+    position: relative;
+    background: linear-gradient(160deg, #f4faf7 0%, #e6f2ec 100%);
+    border: 1px solid #cfe6dc;
     border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 3px 0 0 #2f6f5e44, 0 1px 2px rgba(0,0,0,0.04);
+    padding: 12px;
+    box-shadow:
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 6px 18px -10px rgba(31, 91, 79, 0.18);
+    overflow: hidden;
   }
-  .plans-card .card-title { font-size: 15px; }
+  .plans-card::before {
+    content: "";
+    position: absolute;
+    top: -32px; right: -32px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(47,138,114,0.08);
+    pointer-events: none;
+  }
+  .plans-card-head,
+  .plans-card .book-discount-note,
+  .plans-card .plans-list { position: relative; z-index: 1; }
+  .plans-card .card-title {
+    font-size: 10px;
+    font-weight: 800;
+    color: #6c7a7a;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
   .plans-card-head {
     display: flex;
     align-items: center;
@@ -419,7 +640,7 @@
   body[data-booking-state="offered"] .screen[data-sit="D"] .plans-book-btn {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #f5a524, #d97706);
+    background: linear-gradient(135deg, #f5c450, #d9941a);
     color: #fff;
     border: none;
     padding: 7px 14px;
@@ -429,7 +650,7 @@
     cursor: pointer;
     font-family: inherit;
     white-space: nowrap;
-    box-shadow: 0 3px 10px rgba(245,165,36,0.32);
+    box-shadow: 0 3px 10px rgba(245,196,80,0.32);
   }
   .plans-book-btn:hover { transform: translateY(-1px); }
 
@@ -437,62 +658,95 @@
   .plans-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 14px;
+    gap: 8px;
+    margin-top: 10px;
   }
+  /* ============ PLAN CARDS — banner-header layout ============ */
   .plan {
     background: #ffffff;
-    border: 1.5px solid #e6ece9;
-    border-radius: 12px;
-    padding: 14px 16px;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid #e0e8e5;
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
   }
   .plan:hover {
-    border-color: #2f8a72;
-    box-shadow: 0 3px 10px rgba(47,138,114,0.1);
+    border-color: #b9dfd0;
+    box-shadow: 0 4px 14px rgba(47, 138, 114, 0.10);
   }
+  /* Header strip — the duration block that owns the card */
   .plan-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 6px;
-  }
-  .plan-duration {
-    font-size: 12px;
-    font-weight: 800;
-    color: #2f8a72;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-  }
-  .plan-price {
-    font-size: 22px;
-    font-weight: 800;
-    color: #0a1818;
-    letter-spacing: -0.4px;
-    line-height: 1;
-  }
-  .plan-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 11.5px;
-    color: #6c7a7a;
-    margin-bottom: 14px;
+    gap: 10px;
+    padding: 9px 16px;
+    background: linear-gradient(135deg, #ecf7f2 0%, #d6efe5 100%);
+    border-bottom: 1px solid #cfe6dc;
+  }
+  .plan-duration {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2f8a72;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    line-height: 1;
+  }
+  .plan-duration .num {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1f5b4f;
+    letter-spacing: -0.4px;
+    line-height: 1;
+  }
+  .plan-permo {
+    font-size: 12.5px;
+    color: #5a6b6a;
     font-weight: 500;
+    line-height: 1;
   }
   .plan-permo strong {
     color: #1f5b4f;
-    font-weight: 800;
+    font-weight: 700;
+  }
+  /* Body of plan card */
+  .plan-body {
+    padding: 10px 16px 8px;
+  }
+  .plan-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .plan-price-row .plan-bump { margin-left: auto; }
+  .plan-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0a1818;
+    letter-spacing: -0.6px;
+    line-height: 1;
+  }
+  .plan-meta {
+    font-size: 12.5px;
+    color: #5a6b6a;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
   .plan-btn {
-    width: 100%;
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 16px 12px;
     padding: 10px;
     border: 1.5px solid #2f8a72;
     background: transparent;
     color: #2f8a72;
-    border-radius: 9px;
-    font-size: 12.5px;
-    font-weight: 800;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
     font-family: inherit;
     letter-spacing: 0.2px;
@@ -500,136 +754,173 @@
   }
   .plan-btn:hover { background: #2f8a72; color: #fff; }
 
-  /* "5% off" badge — always visible on every plan (full-payment discount) */
+  /* Discount pill on price — calmer, smaller */
+  /* Discount pill on price — calmer, smaller */
   .plan-bump {
-    display: inline-block;
-    color: #fff;
-    background: linear-gradient(135deg, #2f8a72, #16a085);
+    display: inline-flex;
+    align-items: center;
+    color: #1f5b4f;
+    background: #d6efe5;
+    border: 1px solid #b9dfd0;
     padding: 3px 8px;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 10.5px;
-    font-weight: 800;
-    margin-left: 6px;
-    letter-spacing: 0.3px;
-    box-shadow: 0 2px 6px rgba(47,138,114,0.32);
+    font-weight: 700;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
+    line-height: 1;
+    vertical-align: 4px;
   }
 
 
-  /* Assessment report + trainer's suggestion (sit D, post-session) */
+  /* ============ ASSESSMENT REPORT — minimal, attractive ============ */
   .report-card { display: none; }
-  .screen[data-sit="D"] .scroll-area[data-page="detail"] .report-card { display: block; }
+  .screen[data-sit="D"] .scroll-area[data-page="detail"] .report-card { display: flex; }
+  /* Card layout: badge | center text | far-right arrow chevron */
   .report-card {
-    background: linear-gradient(180deg, #f8fafe 0%, #e7eef9 100%);
-    border: 1px solid #c5d2e8;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(10,31,61,0.10);
-    transition: transform 0.15s, box-shadow 0.18s;
     position: relative;
-  }
-  .report-card::before {
-    content: "";
-    position: absolute;
-    top: -1px; left: -1px; right: -1px;
-    height: 3px;
-    background: linear-gradient(90deg, #d32f2f, #f5a524);
-    border-radius: 12px 12px 0 0;
-  }
-  .report-card:hover { box-shadow: 0 4px 14px rgba(10,31,61,0.16); transform: translateY(-1px); }
-  .report-row {
+    background: linear-gradient(135deg, #ffffff 0%, #f3faf7 100%);
+    border: 1px solid #d4ebe0;
+    border-radius: 16px;
+    padding: 18px 18px 18px 16px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    box-shadow:
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 14px 30px -16px rgba(15, 60, 47, 0.22);
+    transition: transform 0.18s ease, box-shadow 0.2s ease;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
   }
-  .report-icon {
-    flex: 0 0 44px;
-    width: 44px;
-    height: 54px;
-    background: linear-gradient(180deg, #d32f2f, #b71c1c);
-    color: #fff;
-    border-radius: 5px;
+  .report-card::before { display: none !important; }
+  .report-card::after {
+    /* soft decorative glow */
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,138,114,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .report-card:hover {
+    box-shadow:
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 18px 36px -16px rgba(15, 60, 47, 0.32);
+    transform: translateY(-2px);
+  }
+
+  /* New eye-catching badge icon */
+  .report-badge {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2f8a72 0%, #16a085 60%, #1f6b58 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.6px;
-    box-shadow: 0 3px 8px rgba(211,47,47,0.32);
     position: relative;
+    box-shadow:
+      0 4px 12px rgba(47, 138, 114, 0.35),
+      0 1px 0 rgba(255,255,255,0.4) inset;
   }
-  .report-icon::after {
+  /* subtle shine */
+  .report-badge::before {
     content: "";
     position: absolute;
-    top: 0; right: 0;
-    width: 12px; height: 12px;
-    background: linear-gradient(135deg, transparent 50%, #b71c1c 50%);
-  }
-  .report-content { flex: 1; min-width: 0; line-height: 1.25; }
-  .report-title { font-size: 14px; font-weight: 800; color: #0a1f3d; letter-spacing: -0.1px; }
-  .report-sub { font-size: 11px; color: #4a5870; margin-top: 3px; font-weight: 600; }
-  .report-tap-hint {
-    margin-top: 10px;
-    padding: 9px 10px;
-    border-top: 1px dashed #c5d2e8;
-    text-align: center;
-    font-size: 10.5px;
-    font-weight: 800;
-    color: #0a84ff;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-  }
-  .report-tap-hint .arrow {
-    margin-left: 4px;
-    transition: transform 0.18s;
-    display: inline-block;
-  }
-  .report-card:hover .report-tap-hint .arrow {
-    transform: translateX(3px);
-  }
-  /* PDF mini preview */
-  .report-preview {
-    margin-top: 12px;
-    background: #fff;
-    border: 1px solid #d8e1f0;
-    border-radius: 6px;
-    padding: 10px 10px 0;
-    height: 76px;
-    position: relative;
-    overflow: hidden;
-  }
-  .rp-page { display: flex; flex-direction: column; gap: 4px; }
-  .rp-line {
-    height: 4px;
-    background: #c8d3e6;
-    border-radius: 2px;
-    width: 92%;
-  }
-  .rp-line.short { width: 60%; }
-  .rp-line.shorter { width: 40%; }
-  .rp-line-h {
-    height: 7px;
-    width: 55%;
-    background: #0a1f3d;
-    border-radius: 2px;
-    margin-bottom: 4px;
-  }
-  .rp-line-h2 {
-    height: 5px;
-    width: 35%;
-    background: #5a6e8e;
-    border-radius: 2px;
-    margin: 6px 0 3px;
-  }
-  .rp-fade {
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 32px;
-    background: linear-gradient(180deg, transparent 0%, #fff 75%);
+    top: 3px; left: 3px; right: 3px;
+    height: 22px;
+    border-radius: 13px 13px 30px 30px / 13px 13px 18px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0));
     pointer-events: none;
   }
+  .report-badge svg {
+    width: 28px; height: 28px;
+    stroke: #ffffff;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    position: relative;
+    z-index: 1;
+  }
+  /* small green check stamp on the badge */
+  .report-badge .badge-stamp {
+    position: absolute;
+    bottom: -3px; right: -3px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #f3faf7;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 5px rgba(15, 60, 47, 0.18);
+    z-index: 2;
+  }
+  .report-badge .badge-stamp svg {
+    width: 11px; height: 11px;
+    stroke: #2f8a72;
+    stroke-width: 3;
+  }
+
+  .report-head-text {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+  .report-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0a1818;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .report-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2f8a72;
+    letter-spacing: 0.2px;
+  }
+  .report-action .arrow {
+    display: none;
+  }
+
+  /* Far-right standalone chevron pill — anchors the right side */
+  .report-chev {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #d4ebe0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2f8a72;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 2px 5px rgba(15, 60, 47, 0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .report-card:hover .report-chev {
+    transform: translateX(3px);
+    box-shadow: 0 4px 10px rgba(15, 60, 47, 0.16);
+  }
+
+  /* Hide every legacy sub-element so old JS hooks are safe */
+  .report-preview, .report-tap-hint, .report-row, .report-content, .report-sub,
+  .report-icon, .report-eyebrow, .report-byline, .report-quote, .report-footer, .report-meta { display: none !important; }
 
   /* PDF viewer modal (user side) */
   .pdf-modal {
@@ -750,33 +1041,69 @@
 
   /* Booking-paid mode: amber/yellow theme on banner + gist card */
   body[data-profile-mode="booking"] .pay-confirm-banner {
-    background: linear-gradient(135deg, #f5a524, #d97706);
-    box-shadow: 0 3px 10px rgba(217,119,6,0.32);
+    background: linear-gradient(135deg, #f5c450, #d9941a);
+    box-shadow: 0 3px 10px rgba(217,148,26,0.32);
   }
   body[data-profile-mode="booking"] .pay-confirm-banner:hover {
-    box-shadow: 0 5px 14px rgba(217,119,6,0.42);
+    box-shadow: 0 5px 14px rgba(217,148,26,0.42);
   }
   body[data-profile-mode="booking"] .subscription-card {
-    background: linear-gradient(160deg, #fff3d6 0%, #fde2a4 100%);
-    border-color: #d97706;
-    box-shadow: 0 3px 12px rgba(217,119,6,0.20);
+    background: linear-gradient(160deg, #fffdf2 0%, #fdf6d6 100%);
+    border-color: #f8e7a8;
+    box-shadow: 0 1px 2px rgba(120, 53, 15, 0.04), 0 6px 18px -10px rgba(217,148,26,0.20);
   }
   body[data-profile-mode="booking"] .subscription-card::before {
-    background: rgba(217,119,6,0.10);
+    background: rgba(217,148,26,0.07);
   }
   body[data-profile-mode="booking"] .sub-card-badge {
-    background: linear-gradient(135deg, #f5a524, #d97706);
-    box-shadow: 0 1.5px 5px rgba(217,119,6,0.32);
+    background: linear-gradient(135deg, #f5c450, #d9941a);
+    box-shadow: 0 1.5px 5px rgba(217,148,26,0.22);
+    font-weight: 700;
   }
-  body[data-profile-mode="booking"] .sub-card-title { color: #78350f; }
-  body[data-profile-mode="booking"] .sub-meta-label { color: #92400e; }
-  body[data-profile-mode="booking"] .sub-meta-value { color: #1a1006; }
-  body[data-profile-mode="booking"] .sub-meta { background: rgba(255,255,255,0.75); }
+  body[data-profile-mode="booking"] .sub-card-title {
+    color: #8a5d10;
+    font-weight: 700;
+  }
+  body[data-profile-mode="booking"] .sub-meta-label {
+    color: #a06a1a;
+    font-weight: 600;
+  }
+  body[data-profile-mode="booking"] .sub-meta-value {
+    color: #3a2410;
+    font-weight: 700;
+  }
+  body[data-profile-mode="booking"] .sub-meta { background: rgba(255,255,255,0.7); }
   body[data-profile-mode="booking"] .sub-days-left {
-    color: #78350f;
-    border-color: #fcd9a4;
-    background: rgba(255,255,255,0.85);
+    color: #8a5d10;
+    border-color: #f3d9a4;
+    background: rgba(255,255,255,0.8);
+    font-weight: 600;
   }
+  /* Choose Plan CTA shown only in booking mode */
+  .sub-choose-plan-btn { display: none; }
+  body[data-profile-mode="booking"] .sub-choose-plan-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 11px;
+    border: none;
+    background: linear-gradient(135deg, #f5c450, #d9941a);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 3px 10px rgba(217,148,26,0.25);
+    transition: transform 0.15s, box-shadow 0.18s;
+  }
+  body[data-profile-mode="booking"] .sub-choose-plan-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(217,148,26,0.32);
+  }
+  /* In booking mode, hide the plan-name title slot (replaced by the CTA) */
+  body[data-profile-mode="booking"] .sub-card-title { display: none; }
 
   /* Step G — "Booking Paid" (₹1,000 paid, plan not yet chosen) */
   .booking-paid-hero { display: none; }
@@ -833,7 +1160,7 @@
   /* Booking-paid timing card */
   .bph-info-card {
     background: #fff;
-    border: 1.5px dashed #cfe6dc;
+    border: 1px solid #cfe6dc;
     border-radius: 12px;
     padding: 12px 14px;
     margin-bottom: 14px;
@@ -848,7 +1175,7 @@
     font-size: 12px;
     color: #2c3a3a;
   }
-  .bph-info-row + .bph-info-row { border-top: 1px dashed #eef2f1; }
+  .bph-info-row + .bph-info-row { border-top: 1px solid #e8edec; }
   .bph-info-row strong { font-weight: 800; color: #0a1818; }
   .bph-info-row .pill-paid {
     display: inline-block;
@@ -928,9 +1255,9 @@
     display: block;
   }
   .ub-card {
-    background: linear-gradient(180deg, #fef9ec 0%, #fdf3d4 100%);
-    border: 1.5px solid #f5a52466;
-    border-left: 4px solid #f5a524;
+    background: linear-gradient(180deg, #fffdf2 0%, #fdf6d6 100%);
+    border: 1.5px solid #f5c45066;
+    border-left: 4px solid #f5c450;
     border-radius: 12px;
     padding: 12px 14px;
     margin-bottom: 12px;
@@ -943,7 +1270,7 @@
   .ub-sub { font-size: 11px; color: #4a5858; margin-top: 2px; line-height: 1.3; }
   .ub-btn {
     flex-shrink: 0;
-    background: linear-gradient(135deg, #f5a524, #d97706);
+    background: linear-gradient(135deg, #f5c450, #d9941a);
     color: #fff;
     border: none;
     padding: 9px 12px;
@@ -953,7 +1280,7 @@
     cursor: pointer;
     font-family: inherit;
     white-space: nowrap;
-    box-shadow: 0 3px 10px rgba(245,165,36,0.3);
+    box-shadow: 0 3px 10px rgba(245,196,80,0.3);
   }
 
   /* Add-on services (sits D and E) */
@@ -1463,7 +1790,7 @@
     font-size: 12.5px;
     color: #2c3a3a;
   }
-  .ms-row + .ms-row { border-top: 1px dashed #eef2f1; }
+  .ms-row + .ms-row { border-top: 1px solid #e8edec; }
   .ms-row strong { font-weight: 800; color: #0a1818; }
   .ms-row .discount-pill {
     display: inline-block;
@@ -1604,7 +1931,7 @@
     align-items: center;
     gap: 11px;
     padding: 10px 0;
-    border-top: 1px dashed #eef2f1;
+    border-top: 1px solid #e8edec;
   }
   .ms-addon-item:first-of-type { border-top: 0; padding-top: 4px; }
   .ms-addon-item:last-of-type { padding-bottom: 0; }
@@ -1640,6 +1967,7 @@
     font-weight: 600;
   }
   .ms-addon-tag {
+    display: none;
     font-size: 9.5px;
     font-weight: 800;
     color: #2f8a72;
@@ -1757,7 +2085,7 @@
     align-items: center;
     gap: 10px;
     padding: 9px 0;
-    border-top: 1px dashed #eef2f1;
+    border-top: 1px solid #e8edec;
   }
   .ms-bill-row:first-of-type { border-top: 0; padding-top: 4px; }
   .ms-bill-icon {
@@ -1837,7 +2165,7 @@
     align-items: center;
     gap: 11px;
     padding: 10px 0;
-    border-top: 1px dashed #eef2f1;
+    border-top: 1px solid #e8edec;
     cursor: pointer;
   }
   .ms-contact-row:first-of-type { border-top: 0; padding-top: 4px; }
@@ -2016,51 +2344,69 @@
     border-radius: 5px;
   }
 
-  /* Add-ons inside each plan — collapsed by default, expand for selected plan */
+  /* ============ ADD-ONS — cleaner, readable ============ */
   .plan-addons { display: none; }
   body[data-selected-plan="1m"] .plan-1m .plan-addons,
   body[data-selected-plan="3m"] .plan-3m .plan-addons,
   body[data-selected-plan="6m"] .plan-6m .plan-addons { display: block; }
   .plan-addons {
-    margin-top: 12px;
-    padding: 10px 0 4px;
-    border-top: 1px dashed #d8e2e0;
+    margin: 0 16px;
+    padding: 12px 0 4px;
+    border-top: 1px solid #e0e8e5;
     animation: addonsExpand 0.22s ease;
   }
   @keyframes addonsExpand {
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .plan-addons-title {
-    font-size: 11px;
-    font-weight: 800;
-    color: #6c7a7a;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
+  .plan-addons-title-row {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .plan-addons-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1f5b4f;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
   }
   .plan-addons-rate {
+    font-size: 11px;
+    color: #6c7a7a;
+    font-weight: 500;
+    margin-left: auto;
+  }
+  .plan-addons-chip {
     font-size: 10px;
-    color: #9aa6a4;
-    letter-spacing: 0.3px;
     font-weight: 700;
-    text-transform: none;
+    color: #1f5b4f;
+    background: #d6efe5;
+    border: 1px solid #b9dfd0;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    display: none;
+    box-shadow: none;
+    text-transform: uppercase;
+    margin-left: auto;
   }
   .addon-bullet {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 2px;
-    font-size: 12px;
-    color: #8c9897;
+    gap: 12px;
+    padding: 9px 2px;
+    font-size: 13px;
+    color: #1a3a3a;
+    border-top: 1px solid #e0e8e5;
     transition: color 0.15s;
   }
+  .addon-bullet:first-of-type { border-top: 0; padding-top: 2px; }
   .addon-bullet-mark {
-    width: 16px; height: 16px;
-    border-radius: 50%;
+    width: 18px; height: 18px;
+    border-radius: 5px;
     border: 1.5px solid #c8d0cf;
     background: #fff;
     flex-shrink: 0;
@@ -2080,47 +2426,31 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg) translate(-1px, -1px);
   }
-  .addon-bullet.active { color: #1a3a3a; }
-  .addon-bullet.active .addon-bullet-name { font-weight: 700; }
-  .addon-bullet-name { flex: 1; }
+  .addon-bullet.active .addon-bullet-name { font-weight: 700; color: #0a1818; }
+  .addon-bullet-name {
+    flex: 1;
+    font-weight: 500;
+  }
   .addon-prices {
     display: inline-flex;
     align-items: baseline;
-    gap: 5px;
+    gap: 6px;
     flex-shrink: 0;
   }
   .addon-strike {
-    font-size: 10.5px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     color: #b6c0bf;
     text-decoration: line-through;
-    text-decoration-thickness: 1.2px;
+    text-decoration-thickness: 1px;
   }
   .addon-now {
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
     color: #0a1818;
+    letter-spacing: -0.2px;
   }
   .addon-now.discounted { color: #2f8a72; }
-  .plan-addons-title-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-  .plan-addons-chip {
-    font-size: 9.5px;
-    font-weight: 800;
-    color: #fff;
-    background: linear-gradient(135deg, #2f8a72, #16a085);
-    padding: 2.5px 7px;
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
-    display: none;
-    box-shadow: 0 1.5px 5px rgba(47,138,114,0.32);
-    text-transform: uppercase;
-  }
 
   /* Payment summary card — sticky at bottom while plan is selected */
   .payment-summary { display: none; }
@@ -2181,18 +2511,33 @@
   }
   .ps-cta:hover { transform: translateY(-1px); }
 
-  /* Selected plan visual cue (when user has clicked Choose Plan) */
+  /* Selected plan visual cue (when user has clicked Select Plan) */
   body[data-selected-plan="1m"] .plan-1m,
   body[data-selected-plan="3m"] .plan-3m,
   body[data-selected-plan="6m"] .plan-6m {
     border-color: #2f8a72;
     box-shadow: 0 4px 16px rgba(47,138,114,0.22);
   }
+  /* Once selected: button greys out and shows "Selected" — user proceeds via the sticky Payment CTA */
   body[data-selected-plan="1m"] .plan-1m .plan-btn,
   body[data-selected-plan="3m"] .plan-3m .plan-btn,
   body[data-selected-plan="6m"] .plan-6m .plan-btn {
-    background: #2f8a72;
-    color: #fff;
+    background: #eef2f0;
+    color: #8a9494;
+    border-color: #dde3e1;
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+    font-size: 0;
+  }
+  body[data-selected-plan="1m"] .plan-1m .plan-btn::after,
+  body[data-selected-plan="3m"] .plan-3m .plan-btn::after,
+  body[data-selected-plan="6m"] .plan-6m .plan-btn::after {
+    content: "✓ Selected";
+    font-size: 13px;
+    font-weight: 700;
+    color: #8a9494;
+    letter-spacing: 0.2px;
   }
 
   /* Payment page styles */
@@ -2561,7 +2906,7 @@
 
   /* ==== Auto-pay schedule visualization ==== */
   .schedule-card {
-    border: 1px dashed #cfe6dc;
+    border: 1px solid #cfe6dc;
     background: #f7fbf9;
     border-radius: 10px;
     padding: 10px;
@@ -2572,7 +2917,7 @@
     align-items: center;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px dashed #d8e6e1;
+    border-bottom: 1px solid #d8e6e1;
   }
   .schedule-row:last-child { border-bottom: 0; }
   .schedule-dot {
@@ -2727,7 +3072,7 @@
   .detail-body { padding: 14px; }
   .detail-section { display: none; }
   .screen[data-sit="A"] .detail-section.sec-A,
-  .screen[data-sit="B"] .detail-section.sec-B,
+  .screen[data-sit^="B"] .detail-section.sec-B,
   .screen[data-sit="C"] .detail-section.sec-C { display: block; }
 
   /* Shared post-session details — visible in D, E, F, G */
@@ -2775,32 +3120,53 @@
   }
   .book-discount-note strong { color: #1f5b4f; font-weight: 800; }
 
-  /* Plan recommendation highlight (orange/amber) */
+  /* Plan recommendation highlight — calmer amber/cream */
   .plan { position: relative; }
   .plan.recommended {
-    border: 2px solid #f5a524;
-    background: linear-gradient(180deg, #fef9ec 0%, #fdf3d4 100%);
-    box-shadow: 0 4px 14px rgba(245,165,36,0.25);
+    border: 1.5px solid #f5c450;
+    box-shadow: 0 3px 12px rgba(245,196,80,0.18);
+    overflow: visible;
+    margin-top: 9px;
+  }
+  .plan.recommended .plan-head {
+    background: linear-gradient(135deg, #fef0d2 0%, #fcd996 100%);
+    border-bottom-color: #f3df9c;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .plan.recommended .plan-duration .num { color: #8a5d10; }
+  .plan.recommended .plan-duration { color: #d9941a; }
+  .plan.recommended .plan-permo strong { color: #d9941a; }
+  .plan.recommended .plan-bump {
+    color: #8a5d10;
+    background: #fef0d2;
+    border-color: #f3df9c;
   }
   .plan.recommended::before {
     content: "TRAINER'S PICK";
     position: absolute;
     top: -9px;
-    left: 12px;
-    background: #f5a524;
+    left: 14px;
+    background: linear-gradient(135deg, #f5c450, #d9941a);
     color: #fff;
-    padding: 2px 8px;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.7px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
     border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(245,165,36,0.4);
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(245,196,80,0.32);
   }
   .plan.recommended .plan-btn {
-    background: linear-gradient(135deg, #f5a524, #d97706);
+    background: linear-gradient(135deg, #f5c450, #d9941a);
     color: #fff;
-    border-color: #f5a524;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(245,196,80,0.25);
   }
+  .plan.recommended .plan-btn:hover {
+    box-shadow: 0 4px 14px rgba(245,196,80,0.36);
+  }
+  .plan.recommended .plan-addons { border-top-color: #f3df9c; }
+  .plan.recommended .addon-bullet { border-top-color: #f3df9c; }
 
   .confirmed-banner {
     align-items: center;
@@ -2965,7 +3331,7 @@
     display: inline-block;
     background: #fff5e0;
     color: #c2410c;
-    border: 1px solid #f5a52455;
+    border: 1px solid #f5c45055;
     border-radius: 999px;
     padding: 6px 14px;
     font-size: 12px;
@@ -3035,7 +3401,7 @@
     font-weight: 800;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    border: 1px solid #f5a52444;
+    border: 1px solid #f5c45044;
   }
 
   .otp-card {
@@ -3218,12 +3584,28 @@
   .sb-chat { color:#444; font-size:11px; }
   .sb-running { background:#1f8a4c; color:#fff; font-size:8px; padding:2px 3px; border-radius:3px; line-height:1; }
   .sb-5g { background:#444; color:#fff; font-size:8px; font-weight:800; padding:1px 3px; border-radius:3px; letter-spacing:0; line-height:1; }
-  .sb-bars { font-size:11px; color:#222; letter-spacing:-1px; }
-  .sb-battery { background:#2c2c2c; color:#fff; border-radius:9px; font-size:10px; font-weight:700; padding:2px 7px; line-height:1.1; }
+  .sb-bars { font-size:11px; color:#222; letter-spacing:-1px; display:inline-flex; align-items:center; }
+  .sb-wifi { display:inline-flex; align-items:center; }
+  .sb-dot { width:3px; height:3px; border-radius:50%; background:#666; display:inline-block; margin: 0 2px; }
+  .sb-battery {
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#3a3a3a; color:#fff; border-radius:8px;
+    font-size:10px; font-weight:700;
+    padding:2px 7px; line-height:1.1;
+    position: relative;
+    min-width: 22px;
+  }
+  .sb-battery::before {
+    content:""; position:absolute; right:-3px; top:5px;
+    width:2px; height:6px; background:#3a3a3a; border-radius:0 2px 2px 0;
+  }
+  .sb-battery.sb-bat-low {
+    background: linear-gradient(90deg, #c0392b 0 18%, #3a3a3a 18% 100%);
+  }
 
   /* Scrollable content */
   .scroll-area {
-    height: calc(100% - 30px - 78px);
+    height: calc(100% - 30px - 92px);
     overflow-y: auto;
     padding-bottom: 24px;
     -webkit-overflow-scrolling: touch;
@@ -3235,7 +3617,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 18px 14px;
+    padding: 8px 18px 4px;
   }
   .header .user {
     display: flex;
@@ -3246,7 +3628,7 @@
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background: #aaa url('https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=200&h=200&fit=crop') center/cover;
+    background: #aaa url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&h=200&fit=crop') center/cover;
     border: 1.5px solid #d8d8d8;
   }
   .welcome-text { line-height: 1.15; }
@@ -3254,22 +3636,46 @@
   .welcome-text .name { font-size: 22px; font-weight: 800; color: #0a1818; margin-top: 1px; letter-spacing: 0.2px; }
   .bell-wrap {
     color: #1f6e5b;
-    font-size: 24px;
     line-height: 1;
     padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bell-wrap svg {
+    width: 26px;
+    height: 26px;
+    stroke: #1f6e5b;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* Generic card */
   .card {
-    background: #ececec;
+    position: relative;
+    background: linear-gradient(160deg, #f4faf7 0%, #e6f2ec 100%);
+    border: 1px solid #cfe6dc;
     border-radius: 16px;
-    margin: 9px 14px;
-    padding: 14px 16px 14px;
+    margin: 14px 14px;
+    padding: 16px 18px 16px;
     box-shadow:
-      0 3px 0 0 #2f6f5e44,
-      0 1px 2px rgba(0,0,0,0.04);
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 6px 18px -10px rgba(31, 91, 79, 0.18);
     overflow: hidden;
   }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -32px; right: -32px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(47,138,114,0.08);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .card > * { position: relative; z-index: 1; }
   .card-title {
     font-size: 17px;
     font-weight: 800;
@@ -3285,65 +3691,209 @@
     font-weight: 500;
   }
 
-  /* Free trial booking strip */
+  /* ============ BOOKING TICKET ============ */
+  /* Card with embedded heading on top, then ticket body (stub + content) below. */
   .booking {
-    margin: 4px 14px 10px;
-    background: linear-gradient(180deg, #ecf7f2 0%, #d8efe6 100%);
-    border-left: 4px solid #2f8a72;
-    border-radius: 12px;
-    padding: 12px 14px;
-    box-shadow: 0 2px 0 0 #2f6f5e33;
+    position: relative;
+    margin: 8px 14px 14px;
+    background: linear-gradient(160deg, #f4faf7 0%, #e6f2ec 100%);
+    border: 1px solid #cfe6dc;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 0.15s ease;
+    box-shadow:
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 6px 18px -10px rgba(31, 91, 79, 0.18);
+    transition: box-shadow 0.18s ease, transform 0.15s ease;
     -webkit-tap-highlight-color: transparent;
   }
+  .booking:hover {
+    box-shadow:
+      0 1px 2px rgba(15, 60, 47, 0.04),
+      0 10px 24px -10px rgba(31, 91, 79, 0.26);
+  }
   .booking:active { transform: scale(0.99); }
+
+  /* Booking body — the original stub + copy flex row, now wrapped inside .booking */
+  .booking-body {
+    position: relative;
+    display: flex;
+    min-height: 76px;
+    overflow: hidden;
+  }
+
+  /* Left stub: muted green gradient, vertically centered time */
+  .booking .b-time {
+    flex: 0 0 84px;
+    align-self: stretch;
+    background: linear-gradient(160deg, #4ea38e 0%, #357a68 100%);
+    color: #ffffff;
+    padding: 12px 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border-right: none;
+    position: relative;
+  }
+  /* faint dashed seam on the body side of the perforation */
+  .booking .b-time::after {
+    content: "";
+    position: absolute;
+    top: 14px; bottom: 14px;
+    right: -1px;
+    width: 0;
+    border-right: 1.5px dashed rgba(255,255,255,0.5);
+    z-index: 2;
+  }
+  .booking .b-time .day {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+  }
+  .booking .b-time .hr {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 6px;
+    letter-spacing: -0.3px;
+  }
+  /* Live/done variants of the day pill (kept) */
+  .b-time .day.done {
+    color: rgba(255,255,255,0.85);
+  }
+  .b-time .day.live {
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .b-time .day.live .pulse-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    animation: bd-pulse 1.4s ease-in-out infinite;
+  }
+
+  /* Right body: badge + copy + chevron */
+  .booking .copy {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 12px 11px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .booking .b-check {
+    flex: 0 0 30px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ecf7f2, #d6efe5);
+    border: 1px solid #b9dfd0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .booking .b-check svg {
+    width: 15px; height: 15px;
+    stroke: #2f8a72;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .booking .b-body { flex: 1; min-width: 0; line-height: 1.25; }
+  .booking .b-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a1818;
+    line-height: 1.2;
+    letter-spacing: -0.1px;
+  }
+  .booking .b-note {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #6c7a7a;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .booking .b-note .emph { color: #1f5b4f; font-weight: 600; }
+
   .booking .b-chevron {
-    margin-left: auto;
     color: #2f8a72;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1;
     flex: 0 0 auto;
-    opacity: 0.6;
+    opacity: 0.55;
+    transition: transform 0.18s ease, opacity 0.18s ease;
   }
-  /* Booking variants — shown based on situation */
+  .booking:hover .b-chevron { opacity: 1; transform: translateX(2px); }
+
+  /* Variants: which sit shows which body */
   .booking-variant { display: none; }
   .screen[data-sit="A"] .booking-variant.v-A,
-  .screen[data-sit="B"] .booking-variant.v-B,
+  .screen[data-sit^="B"] .booking-variant.v-B,
   .screen[data-sit="C"] .booking-variant.v-C,
   .screen[data-sit="D"] .booking-variant.v-D,
   .screen[data-sit="E"] .booking-variant.v-E,
   .screen[data-sit="F"] .booking-variant.v-F,
   .screen[data-sit="G"] .booking-variant.v-G {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display: contents;
   }
-  /* Sit C: soft green tint (was red), session-ongoing styling */
-  .screen[data-sit="C"] .booking {
-    background: linear-gradient(180deg, #ecf7f2 0%, #d8efe6 100%);
-    border-left-color: #2f8a72;
-    box-shadow: 0 2px 0 0 #2f6f5e33;
-  }
+
   /* For sits A/B/C the booking strip is informational (no detail page nav) */
   .screen[data-sit="A"] .booking,
-  .screen[data-sit="B"] .booking,
+  .screen[data-sit^="B"] .booking,
   .screen[data-sit="C"] .booking { cursor: default; }
   .screen[data-sit="A"] .booking:active,
-  .screen[data-sit="B"] .booking:active,
+  .screen[data-sit^="B"] .booking:active,
   .screen[data-sit="C"] .booking:active { transform: none; }
 
+  /* Sit C: live (in-session) stub — soft warm yellow */
+  .screen[data-sit="C"] .booking .b-time {
+    background: linear-gradient(160deg, #f5c450 0%, #d9941a 100%);
+  }
+  .screen[data-sit="C"] .booking {
+    border-color: #f8e7a8;
+    background: linear-gradient(160deg, #fffdf2 0%, #fdf6d6 100%);
+  }
+  .screen[data-sit="C"] .booking-heading {
+    background: linear-gradient(135deg, #d9941a 0%, #b07a12 100%);
+    border-bottom-color: #a06a1a;
+  }
+
+  /* Sits D–G: muted (completed) stub */
+  .screen[data-sit="D"] .booking .b-time,
+  .screen[data-sit="E"] .booking .b-time,
+  .screen[data-sit="F"] .booking .b-time,
+  .screen[data-sit="G"] .booking .b-time {
+    background: linear-gradient(160deg, #8aa39a 0%, #6c8d83 100%);
+  }
   /* B and C use a column layout for their copy column */
-  .screen[data-sit="B"] .booking-variant.v-B,
+  .screen[data-sit^="B"] .booking-variant.v-B,
   .screen[data-sit="C"] .booking-variant.v-C { align-items: stretch; }
   .booking-variant.v-B .copy,
   .booking-variant.v-C .copy {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 7px;
-    justify-content: center;
+    padding: 10px 12px 10px 18px;
   }
+
+  /* Completed sessions: muted check badge */
+  .booking .b-check.b-check-done {
+    background: linear-gradient(180deg, #eef1f0, #dde3e1);
+    border-color: #c8d0cf;
+  }
+  .booking .b-check.b-check-done svg { stroke: #6c7a7a; }
 
   /* Mini profile row inside booking strip (sit B & C) */
   .b-profile-tiny {
@@ -3359,11 +3909,27 @@
     flex-shrink: 0;
   }
   .b-pmini-info { flex: 1; min-width: 0; line-height: 1.2; }
+  .b-pmini-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
   .b-pmini-name {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     color: #0a1818;
     letter-spacing: -0.1px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .b-pmini-rating {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #4a5858;
+    flex-shrink: 0;
   }
   .b-pmini-meta {
     font-size: 10.5px;
@@ -3390,9 +3956,9 @@
   }
   .b-otp-mini-label {
     font-size: 9px;
-    font-weight: 800;
+    font-weight: 700;
     color: #6c7a7a;
-    letter-spacing: 1.3px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
   }
   .b-otp-mini-digits { display: flex; gap: 4px; }
@@ -3402,11 +3968,11 @@
     justify-content: center;
     width: 22px;
     height: 26px;
-    background: linear-gradient(180deg, #2f8a72, #246b59);
+    background: linear-gradient(180deg, #4ea38e, #357a68);
     color: #fff;
     border-radius: 5px;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     font-family: 'Menlo', monospace;
   }
   .b-otp-mini-digits.locked span {
@@ -3416,10 +3982,10 @@
   }
   .b-time .day.done {
     color: #1f5b4f;
-    font-weight: 800;
+    font-weight: 700;
   }
   .b-time .day.live {
-    color: #d32f2f;
+    color: #ffffff;
     display: inline-flex;
     align-items: center;
     gap: 5px;
@@ -3428,115 +3994,211 @@
     display: inline-block;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: #d32f2f;
+    background: #ffffff;
     animation: bd-pulse 1.4s ease-in-out infinite;
   }
   @keyframes bd-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(1.5); }
   }
-  .booking .b-time {
-    flex: 0 0 auto;
-    text-align: center;
-    line-height: 1;
-    padding-right: 14px;
-    border-right: 1px solid #2f8a7255;
+
+  /* ===== Booking section heading (embedded inside .booking card) ===== */
+  .booking-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    background: linear-gradient(135deg, #2f8a72 0%, #246b59 100%);
+    color: #ffffff;
+    border-bottom: 1px solid #1f5b4f;
   }
-  .booking .b-time .day {
-    font-size: 11px;
+  .booking-heading-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+  .booking-heading-text {
+    font-size: 10px;
     font-weight: 700;
-    color: #2f8a72;
+    color: #ffffff;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    line-height: 1;
   }
-  .booking .b-time .hr {
-    display: block;
-    font-size: 20px;
-    font-weight: 800;
-    color: #0a1818;
-    margin-top: 4px;
-    letter-spacing: -0.3px;
+
+  /* ===== Arriving-by banner (sit BE only) ===== */
+  .arriving-banner { display: none; }
+  .screen[data-sit="BE"] .arriving-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -6px 14px 14px;
+    padding: 10px 14px;
+    background: linear-gradient(160deg, #f4faf7 0%, #e6f2ec 100%);
+    border: 1px solid #cfe6dc;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15, 60, 47, 0.04), 0 6px 18px -10px rgba(31, 91, 79, 0.18);
+    position: relative;
+    overflow: hidden;
   }
-  .booking .copy { flex: 1; min-width: 0; }
-  .booking .b-title {
-    font-size: 14px;
-    font-weight: 800;
-    color: #0a1818;
+  .arriving-icon {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4ea38e, #357a68);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .arriving-icon svg { width: 14px; height: 14px; }
+  .arriving-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
     line-height: 1.2;
   }
-  .booking .b-note {
-    margin-top: 3px;
-    font-size: 12px;
-    color: #4a5858;
-    line-height: 1.3;
+  .arriving-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6c7a7a;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
   }
-  .booking .b-note .emph { color: #1f5b4f; font-weight: 700; }
+  .arriving-time {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f5b4f;
+    letter-spacing: -0.1px;
+  }
+  .arriving-pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ea38e;
+    box-shadow: 0 0 0 0 rgba(78,163,142,0.5);
+    animation: arrPulse 1.6s ease-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes arrPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(78,163,142,0.45); }
+    70%  { box-shadow: 0 0 0 10px rgba(78,163,142,0); }
+    100% { box-shadow: 0 0 0 0 rgba(78,163,142,0); }
+  }
+
+  /* ===== Ongoing session bar (inside v-C booking variant) ===== */
+  .b-session-bar {
+    padding-top: 6px;
+    border-top: 1px solid #f3e0a8;
+  }
+  .b-session-bar-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #a06a1a;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .b-session-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #f5c450;
+    animation: bd-pulse 1.4s ease-in-out infinite;
+  }
+  .b-session-bar-track {
+    height: 5px;
+    background: rgba(245,196,80,0.20);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .b-session-bar-fill {
+    height: 100%;
+    width: 28%;
+    background: linear-gradient(90deg, #f5c450, #d9941a);
+    border-radius: 3px;
+    animation: sessionBarShimmer 2.4s ease-in-out infinite;
+  }
+  @keyframes sessionBarShimmer {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+  }
 
   /* Hero card */
   .hero {
-    margin: 6px 14px 10px;
-    border-radius: 16px;
-    background: linear-gradient(180deg, #f3eecb 0%, #e1eab7 55%, #b3d28a 100%);
+    margin: 14px 14px 14px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #f5efc8 0%, #e3eab2 55%, #a8cf80 100%);
     overflow: hidden;
     position: relative;
     padding: 0;
-    min-height: 170px;
+    min-height: 165px;
     box-shadow: 0 3px 0 0 #2f6f5e55;
     display: flex;
     align-items: stretch;
   }
   .hero-img {
-    flex: 0 0 47%;
-    background: url('https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&h=600&fit=crop') center top/cover;
-    border-radius: 0 0 0 16px;
+    flex: 0 0 36%;
+    background: url('https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=600&h=800&fit=crop') center top/cover;
+    border-radius: 18px 0 0 18px;
   }
   .hero-text {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 14px 14px 14px 10px;
+    padding: 14px 12px 14px 14px;
   }
   .hero-text h2 {
-    font-size: 15px;
+    font-size: 12.5px;
     font-weight: 800;
     color: #0d1f1f;
-    line-height: 1.15;
+    line-height: 1.22;
     text-transform: uppercase;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
   }
   .hero-text p {
-    font-size: 12.5px;
+    font-size: 12px;
     color: #2c3a3a;
     margin: 6px 0 10px;
     font-weight: 500;
   }
   .price-pill {
     display: inline-block;
-    background: rgba(255,255,255,0.35);
-    border: 1.2px solid #1a3a3a;
-    border-radius: 8px;
+    background: rgba(255,255,255,0.55);
+    border: 1.4px solid #1a3a3a;
+    border-radius: 6px;
     padding: 6px 12px;
     font-size: 12.5px;
     font-weight: 700;
     color: #0d1f1f;
     width: fit-content;
+    letter-spacing: 0.1px;
+    text-transform: none;
   }
+  .price-pill .rupee { font-size: 14px; font-weight: 800; }
 
-  /* Personalised care - two side images */
+  /* Personalised care - two side images (large semicircles cut at card bottom) */
+  .card.care-card { padding-bottom: 0; overflow: hidden; }
   .care-images {
     display: flex;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 14px;
+    margin: 18px -2px -14px;
     justify-content: space-between;
   }
   .care-img {
     flex: 1;
     aspect-ratio: 1 / 1;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     border-radius: 50%;
-    max-width: 47%;
+    max-width: 48%;
+    transform: translateY(38%);
   }
   .care-img.left  { background-image: url('https://images.unsplash.com/photo-1545389336-cf090694435e?w=400&h=400&fit=crop'); }
   .care-img.right { background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop'); }
@@ -3546,29 +4208,32 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin: 9px 14px;
+    margin: 14px 14px;
   }
   .row .card {
     margin: 0;
-    padding: 14px 14px 12px;
-    min-height: 220px;
+    padding: 16px 16px 14px;
+    min-height: 240px;
+    overflow: hidden;
   }
+  .row .card.online-classes-card { padding-bottom: 0; }
   .mini-img {
-    margin-top: 14px;
-    width: 100%;
+    margin: 22px -6px -14px;
+    width: calc(100% + 12px);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background: url('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=400&h=400&fit=crop') center/cover;
+    transform: translateY(40%);
   }
   .activity-icons {
-    margin-top: 10px;
+    margin-top: 18px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 4px 0;
+    gap: 8px 0;
     place-items: center;
     line-height: 1;
   }
-  .activity-icons span { font-size: 32px; }
+  .activity-icons span { font-size: 34px; }
 
   /* WhatsApp status */
   .whatsapp { display: flex; gap: 10px; align-items: stretch; }
@@ -3725,9 +4390,17 @@
     background: #fff;
     color: #2f8a72;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
     z-index: 5;
+  }
+  .fab svg {
+    width: 24px;
+    height: 24px;
+    stroke: #2f8a72;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* Bottom nav */
@@ -3735,31 +4408,45 @@
     position: absolute;
     left: 0; right: 0; bottom: 30px;
     background: #2f8a72;
-    border-radius: 18px 18px 0 0;
-    padding: 9px 8px 12px;
+    border-radius: 22px 22px 0 0;
+    padding: 12px 10px 16px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     z-index: 4;
   }
   .nav-item {
     flex: 1;
     color: #ffffff;
     text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 2px;
-    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 2px 7px;
+    border-radius: 16px;
     line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .nav-item svg {
+    width: 28px;
+    height: 28px;
+    stroke: #ffffff;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .nav-item.active {
+    background: #1f6b58;
   }
   .nav-item .icon {
     display: block;
     font-size: 22px;
     line-height: 1;
-    margin-bottom: 3px;
-  }
-  .nav-item.active {
-    background: rgba(255,255,255,0.18);
   }
 
   /* Phone gesture bar */
@@ -3906,7 +4593,7 @@
     animation: bd-pulse 1.4s ease-in-out infinite;
   }
   .screen[data-sit="A"] .t-pill.v-A,
-  .screen[data-sit="B"] .t-pill.v-B,
+  .screen[data-sit^="B"] .t-pill.v-B,
   .screen[data-sit="C"] .t-pill.v-C,
   .screen[data-sit="D"] .t-pill.v-D,
   .screen[data-sit="E"] .t-pill.v-E,
@@ -3931,7 +4618,7 @@
   .t-time-pill.warn { background: #ff8c00; color: #fff; }
   .t-time-pill.timer { background: #ff453a; color: #fff; }
   .screen[data-sit="A"] .t-time-pill.v-A,
-  .screen[data-sit="B"] .t-time-pill.v-B,
+  .screen[data-sit^="B"] .t-time-pill.v-B,
   .screen[data-sit="C"] .t-time-pill.v-C,
   .screen[data-sit="D"] .t-time-pill.v-D,
   .screen[data-sit="E"] .t-time-pill.v-E,
@@ -4089,7 +4776,7 @@
   }
   .t-cta:disabled { cursor: not-allowed; }
   .screen[data-sit="A"] .t-cta.v-A,
-  .screen[data-sit="B"] .t-cta.v-B,
+  .screen[data-sit^="B"] .t-cta.v-B,
   .screen[data-sit="C"] .t-cta.v-C,
   .screen[data-sit="D"] .t-cta.v-D,
   .screen[data-sit="E"] .t-cta.v-E,
@@ -4107,7 +4794,7 @@
     line-height: 1.4;
   }
   .screen[data-sit="A"] .t-footer-note.v-A,
-  .screen[data-sit="B"] .t-footer-note.v-B,
+  .screen[data-sit^="B"] .t-footer-note.v-B,
   .screen[data-sit="C"] .t-footer-note.v-C,
   .screen[data-sit="D"] .t-footer-note.v-D,
   .screen[data-sit="E"] .t-footer-note.v-E,
@@ -4605,7 +5292,7 @@
     line-height: 1;
   }
   .rate-star:hover { transform: scale(1.12); }
-  .rate-star.active { color: #f5a524; }
+  .rate-star.active { color: #f5c450; }
   .rate-modal-confirm {
     width: 100%;
     padding: 13px;
@@ -4641,25 +5328,25 @@
     <div class="situations-title">Try Situations</div>
     <div class="situations-sub">Click a situation to see how the app screen and the booking-detail page change.</div>
     <div class="sit-list">
-      <button class="sit-btn active" data-sit="A">
+      <button class="sit-btn active" data-sit="B">
         <span class="sit-num">1</span>
         <span class="sit-content">
-          <span class="sit-title">More than 1 hr before</span>
-          <span class="sit-sub">Therapist details locked</span>
+          <span class="sit-title">Trial scheduled</span>
+          <span class="sit-sub">Profile + Start OTP</span>
         </span>
       </button>
-      <button class="sit-btn" data-sit="B">
+      <button class="sit-btn" data-sit="BE">
         <span class="sit-num">2</span>
         <span class="sit-content">
-          <span class="sit-title">Within 1 hr of session</span>
-          <span class="sit-sub">Profile + Start OTP</span>
+          <span class="sit-title">Therapist arriving</span>
+          <span class="sit-sub">ETA visible · within 1 hr</span>
         </span>
       </button>
       <button class="sit-btn" data-sit="C">
         <span class="sit-num">3</span>
         <span class="sit-content">
-          <span class="sit-title">Session ongoing &lt; 30 min</span>
-          <span class="sit-sub">Live · End OTP locked</span>
+          <span class="sit-title">Session ongoing</span>
+          <span class="sit-sub">Live · progress bar</span>
         </span>
       </button>
       <button class="sit-btn" data-sit="D">
@@ -4699,19 +5386,27 @@
     <span class="vol-up"></span>
     <span class="vol-dn"></span>
 
-    <div class="screen" data-sit="A">
+    <div class="screen" data-sit="B">
       <!-- Status bar -->
       <div class="status-bar">
         <div class="left">
-          <span class="sb-time">12:15</span>
-          <span class="sb-icon sb-linkedin">in</span>
-          <span class="sb-icon sb-chat">💬</span>
-          <span class="sb-icon sb-running">🏃</span>
+          <span class="sb-time">6:29</span>
+          <span class="sb-icon sb-chat" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#333" stroke-width="1.4"><path d="M3 4l5 4 5-4M3 4v8h10V4"/></svg>
+          </span>
+          <span class="sb-icon sb-chat" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="#333" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4"/></svg>
+          </span>
+          <span class="sb-dot"></span>
         </div>
         <div class="right">
-          <span class="sb-icon sb-5g">5G</span>
-          <span class="sb-bars">▂▄▆</span>
-          <span class="sb-battery">60</span>
+          <span class="sb-wifi" aria-hidden="true">
+            <svg viewBox="0 0 16 12" width="15" height="11" fill="#222"><path d="M8 11l2-2a3 3 0 0 0-4 0l2 2zM3.5 6.5a7 7 0 0 1 9 0l-1.4 1.4a5 5 0 0 0-6.2 0L3.5 6.5zM1 4a10 10 0 0 1 14 0l-1.4 1.4a8 8 0 0 0-11.2 0L1 4z"/></svg>
+          </span>
+          <span class="sb-bars" aria-hidden="true">
+            <svg viewBox="0 0 16 12" width="14" height="11" fill="#222"><rect x="1" y="8" width="2.5" height="3.5" rx="0.5"/><rect x="5" y="6" width="2.5" height="5.5" rx="0.5"/><rect x="9" y="3" width="2.5" height="8.5" rx="0.5"/><rect x="13" y="1" width="2.5" height="10.5" rx="0.5"/></svg>
+          </span>
+          <span class="sb-battery sb-bat-low">9</span>
         </div>
       </div>
 
@@ -4728,30 +5423,28 @@
               <div class="name">Riddhi</div>
             </div>
           </div>
-          <div class="bell-wrap">🔔</div>
+          <div class="bell-wrap" aria-label="Notifications">
+            <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 4 1.5 5 2 6H4c.5-1 2-2 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
+          </div>
         </div>
 
         <!-- Hero -->
         <div class="hero">
           <div class="hero-img"></div>
           <div class="hero-text">
-            <h2>DAILY LIVE YOGA AND<br/>MOBILITY</h2>
+            <h2>DAILY LIVE YOGA AND MOBILITY</h2>
             <p>Morning &amp; Evening Session</p>
-            <div class="price-pill">In Just ₹9/Weekly</div>
+            <div class="price-pill">In Just <span class="rupee">₹9</span>/Weekly</div>
           </div>
         </div>
 
         <!-- Free trial booking notice (4 variants by situation) -->
         <div class="booking" id="bookingCard">
-          <div class="booking-variant v-A">
-            <div class="b-time">
-              <div class="day">Tomorrow</div>
-              <span class="hr">7:30 AM</span>
-            </div>
-            <div class="copy">
-              <div class="b-title">Free Trial Booked</div>
-            </div>
+          <div class="booking-heading">
+            <span class="booking-heading-dot"></span>
+            <span class="booking-heading-text">Free trial booked</span>
           </div>
+          <div class="booking-body">
           <div class="booking-variant v-B">
             <div class="b-time">
               <div class="day">Today</div>
@@ -4761,8 +5454,11 @@
               <div class="b-profile-tiny">
                 <div class="b-photo-mini"></div>
                 <div class="b-pmini-info">
-                  <div class="b-pmini-name">Dr. Anjali Sharma</div>
-                  <div class="b-pmini-meta">★ 4.9 · Starts in 58 min</div>
+                  <div class="b-pmini-name-row">
+                    <span class="b-pmini-name">Dr. Anjali Sharma</span>
+                    <span class="b-pmini-rating">★ 4.9</span>
+                  </div>
+                  <div class="b-pmini-meta">Starts in 58 min</div>
                 </div>
               </div>
               <div class="b-otp-mini">
@@ -4782,9 +5478,19 @@
               <div class="b-profile-tiny">
                 <div class="b-photo-mini"></div>
                 <div class="b-pmini-info">
-                  <div class="b-pmini-name">Dr. Anjali Sharma</div>
-                  <div class="b-pmini-meta">★ 4.9 · Geriatric Care</div>
+                  <div class="b-pmini-name-row">
+                    <span class="b-pmini-name">Dr. Anjali Sharma</span>
+                    <span class="b-pmini-rating">★ 4.9</span>
+                  </div>
+                  <div class="b-pmini-meta">Physiotherapist</div>
                 </div>
+              </div>
+              <div class="b-session-bar">
+                <div class="b-session-bar-label">
+                  <span class="b-session-dot"></span>
+                  <span>Session in progress</span>
+                </div>
+                <div class="b-session-bar-track"><div class="b-session-bar-fill"></div></div>
               </div>
             </div>
           </div>
@@ -4794,15 +5500,33 @@
               <span class="hr">7:30 AM</span>
             </div>
             <div class="copy">
-              <div class="b-title">Session Completed</div>
-              <div class="b-note">Tap to <span class="emph">see the report</span></div>
+              <div class="b-check b-check-done" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+              </div>
+              <div class="b-body">
+                <div class="b-title">Session Completed</div>
+                <div class="b-note">Tap to <span class="emph">see the report</span></div>
+              </div>
+              <div class="b-chevron">›</div>
             </div>
-            <div class="b-chevron">›</div>
           </div>
+          </div><!-- /booking-body -->
+        </div>
+
+        <!-- ETA banner — visible only when therapist is on the way (sit BE) -->
+        <div class="arriving-banner">
+          <span class="arriving-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+          <div class="arriving-text">
+            <span class="arriving-label">Arriving by</span>
+            <strong class="arriving-time">7:25 AM</strong>
+          </div>
+          <span class="arriving-pulse"></span>
         </div>
 
         <!-- Personalised Care -->
-        <div class="card">
+        <div class="card care-card">
           <div class="card-title">PERSONALISED CARE</div>
           <div class="card-sub">Online And Offline</div>
           <div class="care-images">
@@ -4813,7 +5537,7 @@
 
         <!-- Two col -->
         <div class="row">
-          <div class="card">
+          <div class="card online-classes-card">
             <div class="card-title">ONLINE CLASSES</div>
             <div class="card-sub">Yoga Classes</div>
             <div class="mini-img"></div>
@@ -4886,54 +5610,39 @@
          <div class="detail-body">
            <!-- Shared post-session card (D, E) -->
            <div class="post-session-details">
-             <div class="cc-card">
-               <div class="cc-heading">Session Completed</div>
-               <div class="cc-row">
-                 <div class="cc-photo"></div>
-                 <div style="flex:1;min-width:0;">
-                   <div class="cc-name">Dr. Anjali Sharma</div>
-                   <div class="cc-meta">
-                     <span class="cc-rating">★ 4.9</span>
-                   </div>
-                   <div class="cc-cred">Physiotherapist · Geriatric Care</div>
+             <div class="sd-section-heading">Session Completed</div>
+             <div class="session-done-card">
+               <div class="sd-body">
+                 <div class="sd-photo"></div>
+                 <div class="sd-trainer-info">
+                   <div class="sd-trainer-name">Dr. Anjali Sharma</div>
+                   <div class="sd-trainer-cred">Physiotherapist</div>
+                 </div>
+                 <div class="sd-duration">
+                   <span class="sd-dur-num">45</span>
+                   <span class="sd-dur-unit">min</span>
                  </div>
                </div>
-               <div class="cc-divider"></div>
-               <div class="cc-row">
-                 <div>
-                   <div class="cc-label">Duration</div>
-                   <div style="font-size:14px;font-weight:700;color:#0a1818;margin-top:3px;">45 min</div>
-                 </div>
-                 <div style="text-align:right;">
-                   <div class="cc-label">Rate Session</div>
-                   <div style="margin-top:6px;font-size:24px;color:#f5a524;letter-spacing:3px;line-height:1;">★ ★ ★ ★ ★</div>
+               <div class="sd-rate-row">
+                 <div class="sd-rate-label">Rate this session</div>
+                 <div class="sd-stars" role="radiogroup" aria-label="Rate this session">
+                   <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                  </div>
                </div>
-             </div>
-           </div>
-
-           <!-- Assessment Report (only sit D) -->
-           <div class="report-card" id="reportCard">
-             <div class="report-row">
-               <div class="report-icon">PDF</div>
-               <div class="report-content">
-                 <div class="report-title">Session Assessment Report</div>
+               <div class="sd-report-cta" id="reportCard">
+                 <span class="sd-report-icon" aria-hidden="true">
+                   <svg viewBox="0 0 24 24">
+                     <path d="M9 3.5h7.5L19 6v13.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19.5v-14A1.5 1.5 0 0 1 6.5 4H9z"/>
+                     <path d="M8.5 11h7M8.5 14h7M8.5 17h4.5"/>
+                   </svg>
+                 </span>
+                 <div class="sd-report-body">
+                   <div class="sd-report-title">Session Assessment Report</div>
+                   <div class="sd-report-action">View report</div>
+                 </div>
+                 <span class="sd-report-chev" aria-hidden="true">›</span>
                </div>
              </div>
-             <div class="report-preview">
-               <div class="rp-page">
-                 <div class="rp-line rp-line-h"></div>
-                 <div class="rp-line"></div>
-                 <div class="rp-line"></div>
-                 <div class="rp-line short"></div>
-                 <div class="rp-line rp-line-h2"></div>
-                 <div class="rp-line"></div>
-                 <div class="rp-line shorter"></div>
-                 <div class="rp-line"></div>
-               </div>
-               <div class="rp-fade"></div>
-             </div>
-             <div class="report-tap-hint">Tap to view full document <span class="arrow">›</span></div>
            </div>
 
            <!-- Confirmed banner (after client paid booking amount) -->
@@ -4949,17 +5658,12 @@
              </div>
              <div class="bph-body">
                <div class="bph-title">₹1,000 Booking Paid</div>
-               <div class="bph-sub">Subscribe today to lock in your <strong>5% off</strong></div>
              </div>
            </div>
            <div class="bph-info-card">
              <div class="bph-info-row">
                <span>Booking amount</span>
                <span><strong>₹1,000</strong>&nbsp;&nbsp;<span class="pill-paid">Paid</span></span>
-             </div>
-             <div class="bph-info-row">
-               <span>Adjustable against plan</span>
-               <strong>Yes · auto-applied</strong>
              </div>
              <div class="bph-info-row">
                <span>Plan discount</span>
@@ -4993,7 +5697,7 @@
            <div class="plans-section">
              <div class="plans-card">
                <div class="plans-card-head">
-                 <div class="card-title">Choose your plans</div>
+                 <div class="card-title">Choose your physiotherapy plan</div>
                  <button class="plans-book-btn" id="userBookBtn">Book ₹1,000</button>
                </div>
                <div class="book-discount-note">
@@ -5002,12 +5706,15 @@
                <div class="plans-list">
                  <div class="plan plan-1m" data-plan-id="1m" data-plan-price="12000">
                    <div class="plan-head">
-                     <div class="plan-duration">1 Month</div>
-                     <div class="plan-price">₹12,000<span class="plan-bump">5% off</span></div>
-                   </div>
-                   <div class="plan-meta">
-                     <span>12 sessions</span>
+                     <div class="plan-duration"><span class="num">1</span> Month</div>
                      <span class="plan-permo"><strong>₹1,000</strong>/session</span>
+                   </div>
+                   <div class="plan-body">
+                     <div class="plan-price-row">
+                       <div class="plan-price">₹12,000</div>
+                       <span class="plan-bump">5% off</span>
+                     </div>
+                     <div class="plan-meta">12 sessions</div>
                    </div>
                    <div class="plan-addons">
                      <div class="plan-addons-title-row">
@@ -5039,16 +5746,19 @@
                        </span>
                      </div>
                    </div>
-                   <button class="plan-btn" data-plan-id="1m">Choose Plan</button>
+                   <button class="plan-btn" data-plan-id="1m">Select Plan</button>
                  </div>
                  <div class="plan plan-3m" data-plan-id="3m" data-plan-price="34200">
                    <div class="plan-head">
-                     <div class="plan-duration">3 Months</div>
-                     <div class="plan-price">₹34,200<span class="plan-bump">5% off</span></div>
-                   </div>
-                   <div class="plan-meta">
-                     <span>36 sessions</span>
+                     <div class="plan-duration"><span class="num">3</span> Months</div>
                      <span class="plan-permo"><strong>₹950</strong>/session</span>
+                   </div>
+                   <div class="plan-body">
+                     <div class="plan-price-row">
+                       <div class="plan-price">₹34,200</div>
+                       <span class="plan-bump">5% off</span>
+                     </div>
+                     <div class="plan-meta">36 sessions</div>
                    </div>
                    <div class="plan-addons">
                      <div class="plan-addons-title-row">
@@ -5080,16 +5790,19 @@
                        </span>
                      </div>
                    </div>
-                   <button class="plan-btn" data-plan-id="3m">Choose Plan</button>
+                   <button class="plan-btn" data-plan-id="3m">Select Plan</button>
                  </div>
                  <div class="plan plan-6m" data-plan-id="6m" data-plan-price="64800">
                    <div class="plan-head">
-                     <div class="plan-duration">6 Months</div>
-                     <div class="plan-price">₹64,800<span class="plan-bump">5% off</span></div>
-                   </div>
-                   <div class="plan-meta">
-                     <span>72 sessions</span>
+                     <div class="plan-duration"><span class="num">6</span> Months</div>
                      <span class="plan-permo"><strong>₹900</strong>/session</span>
+                   </div>
+                   <div class="plan-body">
+                     <div class="plan-price-row">
+                       <div class="plan-price">₹64,800</div>
+                       <span class="plan-bump">5% off</span>
+                     </div>
+                     <div class="plan-meta">72 sessions</div>
                    </div>
                    <div class="plan-addons">
                      <div class="plan-addons-title-row">
@@ -5121,7 +5834,7 @@
                        </span>
                      </div>
                    </div>
-                   <button class="plan-btn" data-plan-id="6m">Choose Plan</button>
+                   <button class="plan-btn" data-plan-id="6m">Select Plan</button>
                  </div>
                </div>
              </div>
@@ -5166,7 +5879,7 @@
              <div id="payAddonsList"></div>
              <div class="cc-divider"></div>
              <div class="pay-line pay-total"><span>Total payable</span><strong id="payTotal">₹0</strong></div>
-             <div class="pay-line" id="payFirstInstallmentRow" style="display:none; padding-top:4px; border-top:1px dashed #e8edec; margin-top:4px;">
+             <div class="pay-line" id="payFirstInstallmentRow" style="display:none; padding-top:4px; border-top:1px solid #e8edec; margin-top:4px;">
                <span style="color:#2f8a72; font-weight:700;">Pay today (1st installment)</span>
                <strong id="payFirstInstallmentAmt" style="color:#2f8a72;">₹0</strong>
              </div>
@@ -5478,28 +6191,33 @@
       </div>
 
       <!-- Floating call button -->
-      <div class="fab">📞⁺</div>
+      <div class="fab" aria-label="Quick call">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 4.5a1.5 1.5 0 0 1 1.5-1.5h2.2a1 1 0 0 1 1 .8l.9 3.6a1 1 0 0 1-.3 1L8.6 10.1a13 13 0 0 0 5.3 5.3l1.7-1.7a1 1 0 0 1 1-.3l3.6.9a1 1 0 0 1 .8 1V17.5A1.5 1.5 0 0 1 19.5 19 14.5 14.5 0 0 1 5 4.5z"/>
+          <path d="M17 4v4M15 6h4"/>
+        </svg>
+      </div>
 
       <!-- Bottom nav -->
       <div class="bottom-nav">
         <div class="nav-item active">
-          <span class="icon">🏠</span>
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"/></svg>
           Home
         </div>
         <div class="nav-item">
-          <span class="icon">📅</span>
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
           Event
         </div>
         <div class="nav-item">
-          <span class="icon">📈</span>
+          <svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M14 6h6v6"/></svg>
           Activity
         </div>
         <div class="nav-item">
-          <span class="icon">▶</span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z" fill="#fff" stroke="none"/></svg>
           Library
         </div>
         <div class="nav-item">
-          <span class="icon">👤</span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6 19a6 6 0 0 1 12 0"/></svg>
           Profile
         </div>
       </div>
@@ -5626,6 +6344,8 @@
                   <div class="sub-meta-value" id="msRenews">11 Aug 2026</div>
                 </div>
               </div>
+
+              <button class="sub-choose-plan-btn" id="bookingChoosePlanBtn">Select Plan</button>
             </div>
 
             <!-- Sessions: total / completed / upcoming -->
@@ -5721,7 +6441,7 @@
                 </div>
                 <div class="ms-contact-info">
                   <div class="ms-contact-label">Email</div>
-                  <div class="ms-contact-value">support@wellness.app</div>
+                  <div class="ms-contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b181e1b1b04191f2b1c0e0707050e1818450a1b1b">[email&#160;protected]</a></div>
                 </div>
                 <span class="ms-contact-chev">›</span>
               </div>
@@ -5739,7 +6459,7 @@
     <span class="vol-up"></span>
     <span class="vol-dn"></span>
 
-    <div class="screen" data-sit="A">
+    <div class="screen" data-sit="B">
       <!-- Status bar (dark) -->
       <div class="t-status-bar">
         <span>9:41</span>
@@ -5913,7 +6633,7 @@
     </div>
   </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   (function () {
     const screens    = document.querySelectorAll('.screen');
     const scrollArea = document.querySelector('.scroll-area');
@@ -5966,7 +6686,7 @@
         const sit = btn.dataset.sit;
         screens.forEach(s => s.dataset.sit = sit);
         // Reset the booking flow when going to pre-session states
-        if (sit === 'A' || sit === 'B') {
+        if (sit === 'B' || sit === 'BE') {
           document.body.removeAttribute('data-booking-state');
         }
         // Auto-route the page for this situation
@@ -5974,7 +6694,7 @@
           document.body.dataset.profileMode = 'subscription';
           if (typeof refreshProfile === 'function') refreshProfile();
           go('profile');
-        } else if (sit === 'A' || sit === 'B' || sit === 'C') {
+        } else if (sit === 'B' || sit === 'BE' || sit === 'C') {
           go('home');
         } else if (sit === 'D') {
           go('detail');
@@ -6527,7 +7247,7 @@
         if (msStarted)      msStarted.textContent      = fmtDate(start);
         if (msRenewsLabel)  msRenewsLabel.textContent  = 'Valid until';
         if (msRenews)       msRenews.textContent       = `${fmtDate(validUntil)} · 11:59 PM`;
-        if (msDaysLeft)     msDaysLeft.textContent     = '5% off if you subscribe today';
+        if (msDaysLeft)     msDaysLeft.textContent     = '5% off today';
 
         // Bill: single ₹1,000 paid row + an upcoming "Subscribe to plan" row
         if (msBillList) {
@@ -6680,6 +7400,15 @@
       manageClose.addEventListener('click', () => manageModal.classList.remove('open'));
       manageModal.querySelector('.manage-modal-backdrop')
         .addEventListener('click', () => manageModal.classList.remove('open'));
+    }
+
+    // Booking-mode "Choose Plan" CTA → close modal and jump to plans (detail page)
+    const bookingChoosePlanBtn = document.getElementById('bookingChoosePlanBtn');
+    if (bookingChoosePlanBtn) {
+      bookingChoosePlanBtn.addEventListener('click', () => {
+        if (manageModal) manageModal.classList.remove('open');
+        go('detail');
+      });
     }
 
     function showPaymentSuccess() {
